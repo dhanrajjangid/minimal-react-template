@@ -15,7 +15,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   box-shadow: 1px 1px 3px rgba(0,0,0,.1);
   padding: 15px 10px;
-  background: #C5C5C5;
+  background: #f4f4f4;
   border: none;
   border-radius: 0;
 `;
@@ -39,7 +39,7 @@ const Header = () => {
 
   return (
     <HeaderContainer isOpen={isOpen} className={isOpen ? 'no-shrink' : ''}>
-      <CompanyName>Your Company Name</CompanyName>
+      <CompanyName>Test Design</CompanyName>
       <MdMenu style={{cursor: "pointer"}} size={32} onClick={()=> toggleSidebar()}/>
     </HeaderContainer>
   );
