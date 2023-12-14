@@ -38,7 +38,7 @@ const Header = () => {
   }
 
   return (
-    <HeaderContainer isOpen={isOpen} className={isOpen ? 'no-shrink' : ''}>
+    <HeaderContainer className={isOpen ? 'no-shrink' : ''}>
       <CompanyName>Test Design</CompanyName>
       <MdMenu style={{cursor: "pointer"}} size={32} onClick={()=> toggleSidebar()}/>
     </HeaderContainer>

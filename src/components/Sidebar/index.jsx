@@ -11,7 +11,7 @@ const SidebarContainer = styled.div`
  
   @media (max-width: 600px) {
     position: absolute;
-    left: ${({ isOpen }) => (isOpen ? 0 : '-300px')};
+    left: ${({ isopen }) => (isopen ? 0 : '-300px')};
     transition: left 0.15s ease;
     z-index: 1;
   }
@@ -47,7 +47,7 @@ const SidebarItem = styled.div`
 const Sidebar = () => {
   const isOpen = useSelector((state) => state.sidebar.open);
   return (
-    <SidebarContainer isOpen={isOpen}>
+    <SidebarContainer isopen={isOpen}>
       <SidebarNav>
         <div className="flex-center">
           <ProfilePhoto src={ProfileImg} alt="Profile" />

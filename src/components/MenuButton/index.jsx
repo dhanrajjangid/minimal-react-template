@@ -16,7 +16,6 @@ const MobileMenuButton = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(screenWidth < 768, "Screen width is consoled here");
   const dispatch = useDispatch();
   const toggleSidebar = () => {
     dispatch(actions.toggleSidebar());

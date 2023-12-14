@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 // import { productsData } from "./api/Api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Home from "@/view/Home";
+import { Navigate } from "react-router-dom";
 // import Product from "./components/Product";
 import Login from "@/view/Login";
 
@@ -12,7 +12,7 @@ const PublicLayout = ({ children }) => (
   <div>
     <Header />
     <Outlet />
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 
@@ -23,7 +23,11 @@ const publicRoutes = [
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Navigate to="/home" />,
+      },
+      {
+        // path: "/",
+        // element: <Home />,
         // loader: productsData,
       },
       // {

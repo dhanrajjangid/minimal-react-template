@@ -7,29 +7,39 @@ import Cart from "@/view/Cart";
 import CreateUser from "@/view/CreateUser";
 import Sidebar from "@/components/Sidebar";
 import MobileMenuButton from "@/components/MenuButton";
+import Home from "@/view/Home";
+import { useSelector } from "react-redux";
 
-const isAuthenticated = true;
-
-const PrivateLayout = ({ children }) =>
-  isAuthenticated ? (
+const PrivateLayout = ({ children }) => {
+  const isAuthenticated = useSelector((state) => state.auth.loggedIn);
+  return isAuthenticated ? (
     <div style={{ height: "100vh", display: "flex" }}>
-        <Sidebar />
-        <div style={{margin: "1.5rem", width: "100%", position: 'relative'}}>
-          <MobileMenuButton/> 
-          <div style={{maxHeight: "100vh", overflowY: "auto"}}>
+      <Sidebar />
+      <div style={{ margin: "1.5rem", width: "100%", position: "relative" }}>
+        <MobileMenuButton />
+        <div style={{ maxHeight: "100vh", overflowY: "auto" }}>
           <Outlet />
-          </div>
         </div>
+      </div>
     </div>
   ) : (
     <Navigate to="/login" />
   );
+};
 
 const privateRoutes = [
   {
     path: "/",
     element: <PrivateLayout />,
     children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/home",
+        element: <Home />,
+      },
       {
         path: "/cart",
         element: <Cart />,
