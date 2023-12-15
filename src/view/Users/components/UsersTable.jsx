@@ -56,7 +56,7 @@ export default function UsersTable() {
   };
 
   return (
-      <TableContainer>
+      <TableContainer sx={{minWidth: 700}}>
         <Table aria-label="customized table">
           <TableHead>
             <TableRow>
