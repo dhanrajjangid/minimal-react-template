@@ -11,6 +11,11 @@ const CardContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: 250px;
+  }
 `;
 
 const LeftSection = styled.div`
@@ -23,6 +28,10 @@ const LeftSection = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   padding-left: 16px; /* Add padding for better spacing */
+
+  @media (max-width: 768px) {
+    border-radius: 8px 8px 0 0;
+  }
 `;
 
 const RightSection = styled.div`
