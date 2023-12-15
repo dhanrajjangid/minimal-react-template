@@ -1,14 +1,12 @@
 // privateRoutes.js
 import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
-import Header from "@/components/Header";
-import Footer from "../components/Footer";
 import Cart from "@/view/Cart";
-import CreateUser from "@/view/CreateUser";
 import Sidebar from "@/components/Sidebar";
 import MobileMenuButton from "@/components/MenuButton";
 import Home from "@/view/Home";
 import { useSelector } from "react-redux";
+import Users from "@/view/Users";
 
 const PrivateLayout = ({ children }) => {
   const isAuthenticated = useSelector((state) => state.auth.loggedIn);
@@ -17,7 +15,7 @@ const PrivateLayout = ({ children }) => {
       <Sidebar />
       <div style={{ margin: "1.5rem", width: "100%", position: "relative" }}>
         <MobileMenuButton />
-        <div style={{ maxHeight: "100vh", overflowY: "auto" }}>
+        <div style={{ maxHeight: "100vh", overflowY: "auto", marginTop: "50px" }}>
           <Outlet />
         </div>
       </div>
@@ -45,8 +43,8 @@ const privateRoutes = [
         element: <Cart />,
       },
       {
-        path: "/create-user",
-        element: <CreateUser />,
+        path: "/users",
+        element: <Users />,
       },
     ],
   },
