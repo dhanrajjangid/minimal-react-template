@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ProfileImg from "@/assets/images/profile.jpg";
 import { useNavigate } from "react-router-dom";
+import { actions } from "@/redux/slices/sidebarSlice";
 
 const SidebarContainer = styled.div`
   width: 300px;
@@ -13,7 +14,7 @@ const SidebarContainer = styled.div`
   @media (max-width: 600px) {
     position: absolute;
     left: ${({ isopen }) => (isopen ? 0 : "-300px")};
-    transition: left 0.15s ease;
+    transition: left 0.20s ease;
     z-index: 1;
   }
 }
@@ -46,13 +47,15 @@ const SidebarItem = styled.div`
 `;
 
 const Sidebar = () => {
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isOpen = useSelector((state) => state.sidebar.open);
   const pathname = window.location.pathname;
 
   const handleNavigation = (path) => {
-    navigate(path)
-  }
+    navigate(path);
+    dispatch(actions.toggleSidebar(!isOpen));
+  };
 
   const menuItems = [
     {
@@ -80,7 +83,10 @@ const Sidebar = () => {
         </div>
         {menuItems.map((item) => {
           return (
-            <SidebarItem active={pathname === item.path ? true : false} onClick={()=> handleNavigation(item.path)}>
+            <SidebarItem
+              active={pathname === item.path ? true : false}
+              onClick={() => handleNavigation(item.path)}
+            >
               {item.title}
             </SidebarItem>
           );

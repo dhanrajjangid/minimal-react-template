@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
-import { MdMenu } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { MdMenu, MdClose  } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import { actions } from "@/redux/slices/sidebarSlice";
 
 const MobileMenuButton = () => {
+  const isOpen = useSelector((state) => state.sidebar.open)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const handleResize = () => {
@@ -18,13 +19,13 @@ const MobileMenuButton = () => {
   }, []);
   const dispatch = useDispatch();
   const toggleSidebar = () => {
-    dispatch(actions.toggleSidebar());
+    dispatch(actions.toggleSidebar(!isOpen));
   };
   return (
     <div
       className="flex-center"
       style={{
-        display: `${screenWidth < 768 ? "block" : "none"}`,
+        display: `${screenWidth < 768 ? "flex" : "none"}`,
         background: "rgba(0,0,0,.3)",
         cursor: "pointer",
         height: "2.5rem",
@@ -36,7 +37,7 @@ const MobileMenuButton = () => {
       }}
       onClick={() => toggleSidebar()}
     >
-      <MdMenu size={36} />
+      {isOpen ? <MdClose size={28} /> : <MdMenu size={28} />}
     </div>
   );
 };
