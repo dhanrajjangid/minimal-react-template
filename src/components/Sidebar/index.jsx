@@ -68,12 +68,16 @@ const Sidebar = () => {
       path: "/users",
     },
     {
-      title: "About",
-      path: "/users",
+      title: "Cart",
+      path: "/cart",
     },
     {
-      title: "Contact",
-      path: "/users",
+      title: "Create User",
+      path: "/create-user",
+    },
+    {
+      title: "Profile",
+      path: "/profile",
     },
   ];
   return (
@@ -82,9 +86,10 @@ const Sidebar = () => {
         <div className="flex-center">
           <ProfilePhoto src={ProfileImg} alt="Profile" />
         </div>
-        {menuItems.map((item) => {
+        {menuItems.map((item, index) => {
           return (
             <SidebarItem
+              key={index}
               active={pathname === item.path ? true : false}
               onClick={() => handleNavigation(item.path)}
             >

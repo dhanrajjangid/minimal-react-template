@@ -38,10 +38,10 @@ function createData(
 }
 
 const rows = [
-  createData("Jane Doe", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
-  createData("John Doe", "john.doe@example.com", "123-456-7890", "1990-01-01"),
-  createData("Jane Doe", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
-  createData("Jane Doe", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
+  createData("Jane Doe1", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
+  createData("John Doe2", "john.doe@example.com", "123-456-7890", "1990-01-01"),
+  createData("Jane Doe3", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
+  createData("Jane Doe4", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
 ];
 
 export default function UsersTable() {
@@ -75,7 +75,7 @@ export default function UsersTable() {
           </TableHead>
           <TableBody>
             {rows.map((row, index) => (
-              <StyledTableRow key={row.name}>
+              <StyledTableRow key={row.index}>
                 <StyledTableCell>
                   <Checkbox
                     checked={selectAll}

@@ -8,6 +8,8 @@ import Home from "@/view/Home";
 import { useSelector, useDispatch } from "react-redux";
 import Users from "@/view/Users";
 import { actions } from "@/redux/slices/sidebarSlice";
+import CreateUser from "@/view/CreateUser";
+import Profile from "@/view/Profile";
 
 const PrivateLayout = ({ children }) => {
   const dispatch = useDispatch()
@@ -50,6 +52,14 @@ const privateRoutes = [
       {
         path: "/users",
         element: <Users />,
+      },
+      {
+        path: "/create-user",
+        element: <CreateUser />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },
