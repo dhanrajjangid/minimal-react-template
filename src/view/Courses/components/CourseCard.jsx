@@ -14,6 +14,7 @@ const CardContainer = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    width: 100%;
     height: 250px;
   }
 `;
