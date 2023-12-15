@@ -10,17 +10,31 @@ import Users from "@/view/Users";
 import { actions } from "@/redux/slices/sidebarSlice";
 import CreateUser from "@/view/CreateUser";
 import Profile from "@/view/Profile";
+import Products from "@/view/Products";
+import Courses from "@/view/Courses";
 
 const PrivateLayout = ({ children }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.loggedIn);
   return isAuthenticated ? (
     <div style={{ height: "100vh", display: "flex" }}>
       <Sidebar />
-      <div style={{boxSizing:"border-box", padding: "1.5rem", width: "100%", position: "relative" }}>
+      <div
+        style={{
+          boxSizing: "border-box",
+          padding: "1.5rem",
+          width: "100%",
+          position: "relative",
+        }}
+      >
         <MobileMenuButton />
         <div
-          style={{ maxHeight: "100vh", overflowY: "auto", marginTop: "50px" }}
+          style={{
+            boxSizing: "border-box",
+            maxHeight: "calc(100vh - 100px)",
+            overflowY: "auto",
+            marginTop: "50px",
+          }}
           onClick={() => dispatch(actions.toggleSidebar(false))}
         >
           <Outlet />
@@ -56,6 +70,14 @@ const privateRoutes = [
       {
         path: "/create-user",
         element: <CreateUser />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/courses",
+        element: <Courses />,
       },
       {
         path: "/profile",

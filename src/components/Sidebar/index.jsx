@@ -76,6 +76,14 @@ const Sidebar = () => {
       path: "/create-user",
     },
     {
+      title: "Products",
+      path: "/products",
+    },
+    {
+      title: "Courses",
+      path: "/courses",
+    },
+    {
       title: "Profile",
       path: "/profile",
     },
