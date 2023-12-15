@@ -5,7 +5,7 @@ import UsersTable from "@/view/Users/components/UsersTable";
 
 export default function Users() {
   return (
-    <Grid container item sx={{paddingRight: 2}}>
+    <Grid >
       <Typography variant="h4" mb={4}>Available Users</Typography>
       <UsersTable />
     </Grid>

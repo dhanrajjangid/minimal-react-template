@@ -15,7 +15,7 @@ const PrivateLayout = ({ children }) => {
   return isAuthenticated ? (
     <div style={{ height: "100vh", display: "flex" }}>
       <Sidebar />
-      <div style={{ margin: "1.5rem", width: "100%", position: "relative" }}>
+      <div style={{boxSizing:"border-box", padding: "1.5rem", width: "100%", position: "relative" }}>
         <MobileMenuButton />
         <div
           style={{ maxHeight: "100vh", overflowY: "auto", marginTop: "50px" }}

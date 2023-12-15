@@ -32,13 +32,9 @@ function createData(
   name,
   email,
   phoneNumber,
-  dob,
-  calories,
-  fat,
-  carbs,
-  protein
+  dob
 ) {
-  return { name, email, phoneNumber, dob, calories, fat, carbs, protein };
+  return { name, email, phoneNumber, dob};
 }
 
 const rows = [
@@ -60,9 +56,8 @@ export default function UsersTable() {
   };
 
   return (
-    <Grid container item sx={{ overflowX: "auto"}}>
-      {/* <TableContainer> */}
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <TableContainer>
+        <Table aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>
@@ -100,7 +95,6 @@ export default function UsersTable() {
             ))}
           </TableBody>
         </Table>
-      {/* </TableContainer> */}
-    </Grid>
+      </TableContainer>
   );
 }
