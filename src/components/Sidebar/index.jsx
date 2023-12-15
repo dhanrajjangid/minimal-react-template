@@ -10,7 +10,8 @@ const SidebarContainer = styled.div`
   box-sizing: border-box;
   height: 100vh;
   background-color: #fff;
- 
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.03);
+
   @media (max-width: 600px) {
     position: absolute;
     left: ${({ isopen }) => (isopen ? 0 : "-300px")};
