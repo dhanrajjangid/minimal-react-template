@@ -62,6 +62,8 @@ const items = [
 ];
 
 const Container = styled.div`
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

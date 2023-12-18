@@ -13,8 +13,8 @@ const Card = styled.div`
   overflow: hidden;
 
   @media (max-width: 600px) {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
   }
 `;
 
