@@ -1,7 +1,7 @@
 // ProductCard.js
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FaStar, FaStarHalf } from 'react-icons/fa'; // Import star icons from react-icons
+import { FaStar, FaStarHalf, FaShoppingCart  } from 'react-icons/fa'; // Import star icons from react-icons
 
 const fadeIn = keyframes`
   from {
@@ -13,6 +13,7 @@ const fadeIn = keyframes`
 `;
 
 const Card = styled.div`
+  position: relative;
   width: 250px;
   height: 250px;
   background: #fff;
@@ -32,6 +33,12 @@ const Card = styled.div`
   }
 `;
 
+const CartIconContainer = styled.div`
+  position: absolute;
+  top: 8px; /* Adjust the top position as needed */
+  right: 8px; /* Adjust the right position as needed */
+`;
+
 const Image = styled.img`
   width: 100%;
   height: 60%;
@@ -44,6 +51,7 @@ const Content = styled.div`
   flex-direction: column;
   padding: 0 8px; /* Added padding for better spacing */
 `;
+
 
 const Title = styled.p`
   font-size: 0.8rem;
@@ -58,35 +66,39 @@ const Title = styled.p`
 const Price = styled.p`
   color: #555;
   margin: 0px;
+  font-size: 0.8rem;
   font-weight: bold;
+  margin-right: 8px; /* Added margin to separate price and stars */
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 4px; /* Increased margin for better spacing */
-`;
 
 const Button = styled.button`
-  background: #3498db;
+  background: #000; /* Set the background color to black */
   color: #fff;
   border: none;
-  padding: 8px 12px; /* Adjusted padding for a larger button */
+  padding: 8px 12px; /* Default padding for larger screens */
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-  transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added box-shadow transition */
 
   &:hover {
-    background: #2980b9;
+    background: #333; /* Adjust hover background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Added box shadow on hover */
+  }
+
+  @media (max-width: 600px) {
+    padding: 4px 8px; /* Adjusted padding for mobile view */
+    font-size: 0.8rem; /* Optional: Adjust font size for mobile view */
   }
 `;
 
 const RatingsContainer = styled.div`
   display: flex;
   align-items: center;
+//   gap: 10px;
   margin-top: 4px;
+  margin-bottom: 4px; /* Added margin-bottom for better spacing */
 `;
 
 const StarIcon = styled.div`
@@ -124,13 +136,16 @@ const ProductCard = ({ product }) => {
       <Content>
         <Title>{title}</Title>
 
+        {/* Ratings and Price in the same line */}
         <RatingsContainer>
+          <Price>${price}</Price>
           {renderStars()}
         </RatingsContainer>
-        <ButtonContainer>
-          <Price>${price}</Price>
-          <Button>Add to Cart</Button>
-        </ButtonContainer>
+
+        {/* Container for the cart icon */}
+        <CartIconContainer>
+          <Button><FaShoppingCart /></Button>
+        </CartIconContainer>
       </Content>
     </Card>
   );
