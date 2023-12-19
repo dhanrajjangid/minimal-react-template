@@ -1,16 +1,7 @@
 // ProductCard.js
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { FaStar, FaStarHalf, FaShoppingCart  } from 'react-icons/fa'; // Import star icons from react-icons
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { FaStar, FaStarHalf, FaShoppingCart } from "react-icons/fa";
 
 const Card = styled.div`
   position: relative;
@@ -20,12 +11,6 @@ const Card = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   overflow: hidden;
-  animation: ${fadeIn} 0.5s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 
   @media (max-width: 600px) {
     width: 150px;
@@ -35,8 +20,11 @@ const Card = styled.div`
 
 const CartIconContainer = styled.div`
   position: absolute;
-  top: 8px; /* Adjust the top position as needed */
-  right: 8px; /* Adjust the right position as needed */
+  bottom: 8px;
+  right: 8px;
+  @media (max-width: 600px) {
+    top: 8px;
+  }
 `;
 
 const Image = styled.img`
@@ -49,13 +37,12 @@ const Image = styled.img`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 8px; /* Added padding for better spacing */
+  padding: 0 8px;
 `;
-
 
 const Title = styled.p`
   font-size: 0.8rem;
-  margin: 0px; /* Increased margin for better spacing */
+  margin: 0px;
   color: #333;
 
   @media (max-width: 600px) {
@@ -68,46 +55,44 @@ const Price = styled.p`
   margin: 0px;
   font-size: 0.8rem;
   font-weight: bold;
-  margin-right: 8px; /* Added margin to separate price and stars */
+  margin-right: 8px;
 `;
 
-
 const Button = styled.button`
-  background: #000; /* Set the background color to black */
+  background: #000;
   color: #fff;
   border: none;
-  padding: 8px 12px; /* Default padding for larger screens */
+  padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added box-shadow transition */
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   &:hover {
-    background: #333; /* Adjust hover background color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Added box shadow on hover */
+    background: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 600px) {
-    padding: 4px 8px; /* Adjusted padding for mobile view */
-    font-size: 0.8rem; /* Optional: Adjust font size for mobile view */
+    padding: 4px 8px;
+    font-size: 0.8rem;
   }
 `;
 
 const RatingsContainer = styled.div`
   display: flex;
   align-items: center;
-//   gap: 10px;
   margin-top: 4px;
-  margin-bottom: 4px; /* Added margin-bottom for better spacing */
+  margin-bottom: 4px;
 `;
 
 const StarIcon = styled.div`
-  color: #f1c40f; 
+  color: #f1c40f;
   margin-right: 4px;
-  font-size: 1.2rem; /* Default font size */
+  font-size: 1.2rem;
 
   @media (max-width: 600px) {
-    font-size: 0.6rem; /* Adjust the font size for mobile view */
+    font-size: 0.6rem;
   }
 `;
 
@@ -120,11 +105,19 @@ const ProductCard = ({ product }) => {
     const hasHalfStar = ratings % 1 !== 0;
 
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<StarIcon key={i}><FaStar /></StarIcon>);
+      stars.push(
+        <StarIcon key={i}>
+          <FaStar />
+        </StarIcon>
+      );
     }
 
     if (hasHalfStar) {
-      stars.push(<StarIcon key={fullStars}><FaStarHalf /></StarIcon>);
+      stars.push(
+        <StarIcon key={fullStars}>
+          <FaStarHalf />
+        </StarIcon>
+      );
     }
 
     return stars;
@@ -144,7 +137,9 @@ const ProductCard = ({ product }) => {
 
         {/* Container for the cart icon */}
         <CartIconContainer>
-          <Button><FaShoppingCart /></Button>
+          <Button>
+            <FaShoppingCart />
+          </Button>
         </CartIconContainer>
       </Content>
     </Card>
