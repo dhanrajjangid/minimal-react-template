@@ -1,51 +1,57 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Grid from "@mui/material/Grid";
-import Checkbox from "@mui/material/Checkbox";
+import React, { useState } from "react";
+import styled from "styled-components";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+`;
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+const StyledTableHead = styled.thead`
+  color: #fff;
+  background-color: #e0e0e0;
+`;
 
-function createData(
-  name,
-  email,
-  phoneNumber,
-  dob
-) {
-  return { name, email, phoneNumber, dob};
-}
+const StyledTableCell = styled.th`
+  padding: 15px;
+  text-align: left;
+`;
 
-const rows = [
-  createData("Jane Doe1", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
-  createData("John Doe2", "john.doe@example.com", "123-456-7890", "1990-01-01"),
-  createData("Jane Doe3", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
-  createData("Jane Doe4", "jane.doe@example.com", "987-654-3210", "1985-05-15"),
+const StyledTableRow = styled.tr`
+
+  &:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+`;
+
+const StyledTableCellBody = styled.td`
+  padding: 15px;
+  text-align: left;
+`;
+
+const StyledCheckboxCell = styled.td`
+  padding: 15px;
+`;
+
+const Checkbox = styled.input`
+  margin-right: 5px;
+`;
+
+const usersData = [
+  { name: "Jane Doe1", email: "jane.doe@example.com", phoneNumber: "987-654-3210", dob: "1985-05-15" },
+  { name: "John Doe2", email: "john.doe@example.com", phoneNumber: "123-456-7890", dob: "1990-01-01" },
+  { name: "Jane Doe3", email: "jane.doe@example.com", phoneNumber: "987-654-3210", dob: "1985-05-15" },
+  { name: "Jane Doe4", email: "jane.doe@example.com", phoneNumber: "987-654-3210", dob: "1985-05-15" },
 ];
 
-export default function UsersTable() {
-  const [selectAll, setSelectAll] = React.useState(false);
+const UsersTable = () => {
+  const [selectAll, setSelectAll] = useState(false);
 
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
@@ -56,45 +62,39 @@ export default function UsersTable() {
   };
 
   return (
-      <TableContainer sx={{minWidth: 700}}>
-        <Table aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>
-                <Checkbox
-                  checked={selectAll}
-                  onChange={handleSelectAll}
-                  color="primary"
-                />
-              </StyledTableCell>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell align="right">Email</StyledTableCell>
-              <StyledTableCell align="right">Phone Number</StyledTableCell>
-              <StyledTableCell align="right">Date of Birth</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, index) => (
-              <StyledTableRow key={row.index}>
-                <StyledTableCell>
-                  <Checkbox
-                    checked={selectAll}
-                    onChange={() => handleSelectRow(index)}
-                    color="primary"
-                  />
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {row.name}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.email}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.phoneNumber}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.dob}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+    <StyledTable>
+      <StyledTableHead>
+          <StyledTableCell>
+            <Checkbox
+              type="checkbox"
+              checked={selectAll}
+              onChange={handleSelectAll}
+            />
+          </StyledTableCell>
+          <StyledTableCell>Name</StyledTableCell>
+          <StyledTableCell>Email</StyledTableCell>
+          <StyledTableCell>Phone Number</StyledTableCell>
+          <StyledTableCell>Date of Birth</StyledTableCell>
+      </StyledTableHead>
+      <tbody>
+        {usersData.map((row, index) => (
+          <StyledTableRow key={index}>
+            <StyledCheckboxCell>
+              <Checkbox
+                type="checkbox"
+                checked={selectAll}
+                onChange={() => handleSelectRow(index)}
+              />
+            </StyledCheckboxCell>
+            <StyledTableCellBody>{row.name}</StyledTableCellBody>
+            <StyledTableCellBody>{row.email}</StyledTableCellBody>
+            <StyledTableCellBody>{row.phoneNumber}</StyledTableCellBody>
+            <StyledTableCellBody>{row.dob}</StyledTableCellBody>
+          </StyledTableRow>
+        ))}
+      </tbody>
+    </StyledTable>
   );
-}
+};
+
+export default UsersTable;

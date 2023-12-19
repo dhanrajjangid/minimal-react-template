@@ -4,7 +4,7 @@ import Card from "@/view/Courses/components/CourseCard";
 
 const ParentContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Set the flex direction to column */
   gap: 10px;
   max-width: 100%;
   overflow-y: auto;
@@ -16,14 +16,23 @@ const Heading = styled.h1`
   margin: 5px 0;
 `;
 
+const CardsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 5px;
+`;
+
 const Courses = () => {
   return (
     <ParentContainer>
       <Heading>Available Courses</Heading>
 
-      {[1, 2, 3, 4].map((item) => {
-        return <Card key={item} />;
-      })}
+      <CardsContainer>
+        {[1, 2, 3, 4].map((item) => {
+          return <Card key={item} />;
+        })}
+      </CardsContainer>
     </ParentContainer>
   );
 };

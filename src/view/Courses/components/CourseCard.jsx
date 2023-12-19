@@ -1,49 +1,46 @@
-// CourseCard.js
-
 import React from "react";
 import styled from "styled-components";
+import { FaShoppingCart } from "react-icons/fa";
 
 const CardContainer = styled.div`
+  position: relative;
+  box-sizing: border-box;;
+  width: 250px;
+  height: 250px;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
   display: flex;
-  box-sizing: border-box;
-  width: 90%;
-  height: 150px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: auto;
+  flex-direction: column; /* Updated to column layout */
 
   @media (max-width: 768px) {
-    flex-direction: column;
     width: 100%;
     height: 250px;
   }
 `;
 
-const LeftSection = styled.div`
-  flex-grow: 1;
+const TopSection = styled.div`
   box-sizing: border-box;
   padding: 10px;
   background: linear-gradient(to bottom, grey, black);
-  border-radius: 8px 0 0 8px;
+  border-radius: 16px 16px 0 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  padding-left: 16px; /* Add padding for better spacing */
-
-  @media (max-width: 768px) {
-    border-radius: 8px 8px 0 0;
-  }
+  justify-content: space-between; /* Align items with space between them */
+  align-items: flex-start; /* Align items to the start of the container */
 `;
 
-const RightSection = styled.div`
+const BottomSection = styled.div`
+box-sizing: border-box;
+  max-height: 60%;
   display: flex;
-  max-height: 100%;
-  box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
   flex: 0 0 60%;
   background-color: #fff;
+  flex-grow: 1; /* Allow the content to take remaining space */
 `;
 
 const Type = styled.p`
@@ -65,21 +62,59 @@ const Description = styled.p`
   font-weight: 400;
 `;
 
+const CartIconContainer = styled.div`
+  position: absolute;
+  right: 8px;
+
+  @media (max-width: 768px) {
+    bottom: 8px;
+  }
+`;
+
+const Button = styled.button`
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    background: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 600px) {
+    padding: 4px 8px;
+    font-size: 1.5rem;
+  }
+`;
+
 const CourseCard = () => {
   return (
     <CardContainer>
-      <LeftSection>
-        <Type>COURSE</Type>
-        <Title>Javascript Fundamentals</Title>
-        <Type to="/all-chapters">View All Chapters</Type>
-      </LeftSection>
-      <RightSection>
+      <TopSection>
+        <div>
+          <Type>COURSE</Type>
+          <Title>Javascript Fundamentals</Title>
+        </div>
+
+        {/* Container for the cart icon */}
+        <CartIconContainer>
+          <Button>
+            <FaShoppingCart />
+          </Button>
+        </CartIconContainer>
+      </TopSection>
+      <BottomSection>
         <Description>Chapters - 10</Description>
         <Description>
           This is a test description of the course provided on Javascript
           Fundamentals
         </Description>
-      </RightSection>
+      </BottomSection>
     </CardContainer>
   );
 };
