@@ -8,9 +8,6 @@ const FormContainer = styled.div`
   max-width: 400px;
   margin: auto;
   padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.01);
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,8 +45,8 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #3498db;
-  color: #fff;
+  background-color: #4a4a4a;
+  color: #fff; /* Updated to white */
   padding: 12px;
   font-size: 16px;
   cursor: pointer;
@@ -59,7 +56,7 @@ const Button = styled.button`
   box-sizing: border-box;
   transition: background-color 0.3s;
   &:hover {
-    background-color: #2077b1;
+    background-color: #333; /* Darker shade on hover */
   }
 `;
 
