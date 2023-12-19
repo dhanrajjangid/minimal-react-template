@@ -5,6 +5,7 @@ export const CartContainer = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 20px;
+  color: #333; /* Dark grey text color */
 `;
 
 export const CartItem = styled.div`
@@ -67,11 +68,11 @@ export const TotalLabel = styled.span`
 
 export const TotalValue = styled.span`
   font-size: 18px;
-  color: #3498db;
+  color: #3498db; /* Blue total value color */
 `;
 
 export const CheckoutButton = styled.button`
-  background-color: #3498db;
+  background-color: #4a4a4a;
   color: #fff;
   padding: 12px 20px;
   font-size: 16px;
@@ -91,8 +92,8 @@ export const SmallButton = styled.button`
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 5px; 
-  font-size: 14px; 
+  padding: 5px;
+  font-size: 14px;
   cursor: pointer;
   margin: 0 5px;
 `;
