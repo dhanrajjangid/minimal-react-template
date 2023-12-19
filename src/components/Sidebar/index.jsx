@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { AiOutlineHome, AiOutlineUser, AiOutlineShoppingCart, AiOutlineUserAdd, AiOutlineAppstore, AiOutlineBook, AiOutlineUser as AiOutlineUserProfile } from 'react-icons/ai';
 import ProfileImg from "@/assets/images/profile.jpg";
 import { useNavigate } from "react-router-dom";
 import { actions } from "@/redux/slices/sidebarSlice";
@@ -42,9 +43,17 @@ const SidebarItem = styled.div`
   background-color: ${({ active }) => (active ? "#f4f4f4" : "#fff")};
   border-radius: 4px;
   margin: 0.15em 1.5em;
+  display: flex;
+  align-items: center;
   &:hover {
     background-color: #f4f4f4;
   }
+`;
+
+const Icon = styled.div`
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const Sidebar = () => {
@@ -62,32 +71,40 @@ const Sidebar = () => {
     {
       title: "Home",
       path: "/home",
+      icon: <AiOutlineHome />,
     },
     {
       title: "Users",
       path: "/users",
+      icon: <AiOutlineUser />,
     },
     {
       title: "Cart",
       path: "/cart",
+      icon: <AiOutlineShoppingCart />,
     },
     {
       title: "Create User",
       path: "/create-user",
+      icon: <AiOutlineUserAdd />,
     },
     {
       title: "Products",
       path: "/products",
+      icon: <AiOutlineAppstore />,
     },
     {
       title: "Courses",
       path: "/courses",
+      icon: <AiOutlineBook />,
     },
     {
       title: "Profile",
       path: "/profile",
+      icon: <AiOutlineUserProfile />,
     },
   ];
+
   return (
     <SidebarContainer isopen={isOpen}>
       <SidebarNav>
@@ -101,6 +118,7 @@ const Sidebar = () => {
               active={pathname === item.path ? true : false}
               onClick={() => handleNavigation(item.path)}
             >
+              <Icon>{item.icon}</Icon>
               {item.title}
             </SidebarItem>
           );
