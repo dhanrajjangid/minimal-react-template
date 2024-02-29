@@ -10,7 +10,7 @@ export const Container = styled.div`
   padding: 0 20px;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h2`
   text-align: center;
   margin-bottom: 20px;
 `;

@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { Navigate } from "react-router-dom";
 // import Product from "./components/Product";
 import Login from "@/view/Login";
+import SignUp from "@/view/SignUp";
 
 const PublicLayout = ({ children }) => (
   <div>
@@ -30,10 +31,10 @@ const publicRoutes = [
         // element: <Home />,
         // loader: productsData,
       },
-      // {
-      //   path: "/product/:id",
-      //   element: <Product />,
-      // },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
       {
         path: "/login",
         element: <Login />,

@@ -63,7 +63,7 @@ const LoginForm = () => {
       </StyledForm>
       <Typography>
         Do not have an account?{" "}
-        <SignUpLink onClick={() => navigate("/cart")}>Sign Up</SignUpLink>{" "}
+        <SignUpLink onClick={() => navigate("/signup")}>Sign Up</SignUpLink>{" "}
         here
       </Typography>
     </Container>

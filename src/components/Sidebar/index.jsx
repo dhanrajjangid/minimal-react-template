@@ -1,11 +1,27 @@
 // Sidebar.js
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AiOutlineHome, AiOutlineUser, AiOutlineShoppingCart, AiOutlineUserAdd, AiOutlineAppstore, AiOutlineBook, AiOutlineUser as AiOutlineUserProfile, AiOutlineLogout } from 'react-icons/ai';
+import {
+  AiOutlineHome,
+  AiOutlineUser,
+  AiOutlineShoppingCart,
+  AiOutlineUserAdd,
+  AiOutlineAppstore,
+  AiOutlineBook,
+  AiOutlineUser as AiOutlineUserProfile,
+  AiOutlineLogout,
+} from "react-icons/ai";
 import ProfileImg from "@/assets/images/profile.jpg";
 import { useNavigate } from "react-router-dom";
 import { actions } from "@/redux/slices/sidebarSlice";
-import { SidebarContainer, SidebarNav, ProfilePhoto, SidebarItem, Icon, LogoutButton } from "./SidebarStyles";
+import {
+  SidebarContainer,
+  SidebarNav,
+  ProfilePhoto,
+  SidebarItem,
+  Icon,
+  LogoutButton,
+} from "./SidebarStyles";
 import { actions as authActions } from "@/redux/slices/authSlice";
 
 const Sidebar = () => {
@@ -21,7 +37,14 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(authActions.setIsLoggedIn(false));
-    dispatch(authActions.setAuthState({ name: null, email: null, token: null }));
+    dispatch(
+      authActions.setAuthState({
+        name: null,
+        email: null,
+        token: null,
+        player_id: null,
+      })
+    );
   };
 
   const menuItems = [
@@ -86,7 +109,9 @@ const Sidebar = () => {
           );
         })}
         <LogoutButton onClick={handleLogout}>
-          <Icon><AiOutlineLogout /></Icon>
+          <Icon>
+            <AiOutlineLogout />
+          </Icon>
           Logout
         </LogoutButton>
       </SidebarNav>

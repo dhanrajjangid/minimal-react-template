@@ -7,7 +7,8 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    token: null
+    token: null,
+    player_id: null
   }
 };
 

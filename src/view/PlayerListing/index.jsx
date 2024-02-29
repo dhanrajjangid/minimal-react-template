@@ -1,7 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+// PlayerListing.js
 
-// Sample player data
+import React, { useEffect, useState } from "react";
+import {
+  CardContainer,
+  Card,
+  ProfilePhoto,
+  PlayerDetails,
+  PlayerName,
+  PlayerPosition,
+  Distance,
+  ActiveStatus,
+} from "./StyledComponents";
+import { usePlayerListing } from "./apiFunctions";
+import { useSelector } from "react-redux";
+
 const playersData = [
   {
     id: 1,
@@ -22,50 +34,48 @@ const playersData = [
   // Add more player data as needed
 ];
 
-const CardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
-
-const Card = styled.div`
-  display: flex; /* Align items in a row */
-  align-items: center; /* Vertically center items */
-  width: 250px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-`;
-
-const ProfilePhoto = styled.img`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-right: 20px; /* Add margin to separate from other content */
-`;
-
-const PlayerDetails = styled.div`
-  flex: 1; /* Take up remaining space */
-`;
-
-const PlayerName = styled.h3`
-  margin: 5px 0;
-`;
-
-const PlayerPosition = styled.p`
-  margin: 5px 0;
-`;
-
-const Distance = styled.p`
-  margin: 5px 0;
-`;
-
-const ActiveStatus = styled.span`
-  color: ${({ active }) => (active ? "green" : "red")};
-`;
-
 const PlayerCard = ({ player }) => {
+  const user = useSelector((state) => state.auth.user);
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+
+  useEffect(() => {
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLocation({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            });
+          },
+        );
+      } else {
+        alert('Geolocation is not supported by this browser.');
+      }
+    };
+
+    getLocation();
+  }, []);
+
+  console.log(location, "location is consoled here")
+
+  useEffect(()=> {
+    if(location.latitude){
+      updateUserLocation()
+    }
+  },[location])
+
+  const {updateLocation, getPlayerList} = usePlayerListing()
+
+  const updateUserLocation = async () => {
+    try {
+      await updateLocation(user.player_id, location);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+
   return (
     <Card>
       <ProfilePhoto src={player.profilePhoto} alt={player.name} />
