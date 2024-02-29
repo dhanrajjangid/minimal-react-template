@@ -1,94 +1,73 @@
-// LoginForm.jsx
-import React, { useEffect, useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { actions } from "@/redux/slices/authSlice";
 import { useSelector } from "react-redux";
+import { useLogin } from "./apiFunctions";
+import { Container, Title, StyledForm, StyledTextField, StyledButton, SignUpLink } from "./StyledComponents";
+import * as Yup from 'yup'; // Import Yup
+import { yupResolver } from '@hookform/resolvers/yup';
 
+const validationSchema = Yup.object().shape({
+  username: Yup.string().required('Username is required'),
+  password: Yup.string().required('Password is required')
+});
 
-const Login = () => {
+const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-
   const isAuthenticated = useSelector((state) => state.auth.loggedIn);
+  const user = useSelector((state) => state.auth.user);
+  const login = useLogin();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  useEffect(()=> {
-    if(isAuthenticated){
-      navigate('/')
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
     }
-  },[isAuthenticated])
+  }, [isAuthenticated, navigate]);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema), // Use YupResolver with validationSchema
+  });
 
-    if (username === "admin" && password === "admin") {
-      dispatch(actions.isLoggedIn(true))
-    } else {
-      alert("Invalid username or password");
+  const onSubmit = async (data) => {
+    try {
+      await login(data.username, data.password);
+    } catch (error) {
+      console.error("Login failed:", error);
     }
   };
 
   return (
-    <Grid
-      container
-      className="flex-center"
-      sx={{ flexDirection: "column", height: "90vh", gap: 2, padding: 4 }}
-    >
-      <Typography className="title" variant="h3" sx={{ textAlign: "start" }}>
-        Sign In
-      </Typography>
-      <form onSubmit={handleLogin}>
-        <TextField
-          label="Username"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          required
-          style={{ backgroundColor: "#ffffff" }}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+    <Container>
+      <Title>Sign In</Title>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledTextField
+          {...register("username")}
+          placeholder="Username"
+          type="text"
         />
-        <TextField
-          label="Password"
+        {errors.username && <span>{errors.username.message}</span>}
+        <StyledTextField
+          {...register("password")}
+          placeholder="Password"
           type="password"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          required
-          style={{ backgroundColor: "#ffffff" }}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          fullWidth
-          style={{
-            marginTop: "20px",
-            padding: "10px 0",
-            backgroundColor: "#4a4a4a",
-          }}
-        >
-          Login
-        </Button>
-      </form>
+        {errors.password && <span>{errors.password.message}</span>}
+        <StyledButton type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Logging in..." : "Login"}
+        </StyledButton>
+      </StyledForm>
       <Typography>
         Do not have an account?{" "}
-        <span onClick={() => navigate("/cart")} style={{ color: "purple", cursor: "pointer" }}>
-          Sign Up
-        </span>{" "}
+        <SignUpLink onClick={() => navigate("/cart")}>Sign Up</SignUpLink>{" "}
         here
       </Typography>
-    </Grid>
+    </Container>
   );
 };
 
-export default Login;
+export default LoginForm;

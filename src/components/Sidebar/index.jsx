@@ -1,60 +1,12 @@
+// Sidebar.js
 import React from "react";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { AiOutlineHome, AiOutlineUser, AiOutlineShoppingCart, AiOutlineUserAdd, AiOutlineAppstore, AiOutlineBook, AiOutlineUser as AiOutlineUserProfile } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUser, AiOutlineShoppingCart, AiOutlineUserAdd, AiOutlineAppstore, AiOutlineBook, AiOutlineUser as AiOutlineUserProfile, AiOutlineLogout } from 'react-icons/ai';
 import ProfileImg from "@/assets/images/profile.jpg";
 import { useNavigate } from "react-router-dom";
 import { actions } from "@/redux/slices/sidebarSlice";
-
-const SidebarContainer = styled.div`
-  width: 300px;
-  box-sizing: border-box;
-  height: 100vh;
-  background-color: #fff;
-  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.03);
-
-  @media (max-width: 600px) {
-    position: absolute;
-    left: ${({ isopen }) => (isopen ? 0 : "-300px")};
-    transition: left 0.20s ease;
-    z-index: 1;
-  }
-}
-`;
-
-const SidebarNav = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
-
-const ProfilePhoto = styled.img`
-  display: block;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin: 2.5em auto 1.5em 2.5em;
-`;
-
-const SidebarItem = styled.div`
-  padding: 0.5em 1em;
-  cursor: pointer;
-  background-color: ${({ active }) => (active ? "#f4f4f4" : "#fff")};
-  border-radius: 4px;
-  margin: 0.15em 1.5em;
-  display: flex;
-  align-items: center;
-  &:hover {
-    background-color: #f4f4f4;
-  }
-`;
-
-const Icon = styled.div`
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-`;
+import { SidebarContainer, SidebarNav, ProfilePhoto, SidebarItem, Icon, LogoutButton } from "./SidebarStyles";
+import { actions as authActions } from "@/redux/slices/authSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -65,6 +17,11 @@ const Sidebar = () => {
   const handleNavigation = (path) => {
     navigate(path);
     dispatch(actions.toggleSidebar(!isOpen));
+  };
+
+  const handleLogout = () => {
+    dispatch(authActions.setIsLoggedIn(false));
+    dispatch(authActions.setAuthState({ name: null, email: null, token: null }));
   };
 
   const menuItems = [
@@ -123,6 +80,10 @@ const Sidebar = () => {
             </SidebarItem>
           );
         })}
+        <LogoutButton onClick={handleLogout}>
+          <Icon><AiOutlineLogout /></Icon>
+          Logout
+        </LogoutButton>
       </SidebarNav>
     </SidebarContainer>
   );
