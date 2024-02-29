@@ -1,4 +1,4 @@
-import { putApiData } from '@/services/ApiService';
+import { putApiData, getApiData } from '@/services/ApiService';
 import { actions as authActions } from '@/redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
@@ -19,10 +19,10 @@ export const usePlayerListing = () => {
     }
   };
 
-  const getPlayerList = async (player_id, location) => {
+  const getPlayerList = async (latitude, longitude) => {
     try {
-      const response = await putApiData(`/location/player-location/${player_id}`, location);
-
+      const response = await getApiData(`/location/search-players?latitude=${latitude}&longitude=${longitude}`);
+      console.log(response, 'get player list')
       // dispatch(authActions.setAuthState(response?.data));
       // dispatch(authActions.setIsLoggedIn(true));
 

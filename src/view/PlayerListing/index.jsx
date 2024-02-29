@@ -14,26 +14,6 @@ import {
 import { usePlayerListing } from "./apiFunctions";
 import { useSelector } from "react-redux";
 
-const playersData = [
-  {
-    id: 1,
-    name: "John Doe",
-    position: "Forward",
-    profilePhoto: "https://images.pexels.com/photos/1436145/pexels-photo-1436145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    distance: "10 km",
-    active: true,
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    position: "Defender",
-    profilePhoto: "https://images.pexels.com/photos/1436145/pexels-photo-1436145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    distance: "15 km",
-    active: false,
-  },
-  // Add more player data as needed
-];
-
 const PlayerCard = ({ player }) => {
   const user = useSelector((state) => state.auth.user);
   const [location, setLocation] = useState({ latitude: null, longitude: null });
@@ -57,11 +37,10 @@ const PlayerCard = ({ player }) => {
     getLocation();
   }, []);
 
-  console.log(location, "location is consoled here")
-
   useEffect(()=> {
     if(location.latitude){
       updateUserLocation()
+      getPlayers()
     }
   },[location])
 
@@ -75,16 +54,24 @@ const PlayerCard = ({ player }) => {
     }
   };
 
+  const getPlayers = async () => {
+    try {
+      await getPlayerList(location.latitude, location.longitude);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
 
   return (
     <Card>
-      <ProfilePhoto src={player.profilePhoto} alt={player.name} />
+      <ProfilePhoto src={player?.profilePhoto} alt={player?.name} />
       <PlayerDetails>
-        <PlayerName>{player.name}</PlayerName>
-        <PlayerPosition>{player.position}</PlayerPosition>
-        <Distance>Distance: {player.distance}</Distance>
-        <ActiveStatus active={player.active}>
-          {player.active ? "Active" : "Inactive"}
+        <PlayerName>{player?.name}</PlayerName>
+        <PlayerPosition>Forward</PlayerPosition>
+        <Distance>Distance: 10km</Distance>
+        <ActiveStatus active>
+          Active
         </ActiveStatus>
       </PlayerDetails>
     </Card>
@@ -94,8 +81,8 @@ const PlayerCard = ({ player }) => {
 const PlayerListing = () => {
   return (
     <CardContainer>
-      {playersData.map((player) => (
-        <PlayerCard key={player.id} player={player} />
+      {["playersData"]?.map((player) => (
+        <PlayerCard key={player?.id} player={player} />
       ))}
     </CardContainer>
   );
