@@ -12,11 +12,8 @@ const apiService = axios.create({
 // Function to handle API errors and display toast messages
 const handleApiError = (error) => {
   if (error.response) {
-    // The request was made and the server responded with a status code
-    // that falls out of the range of 2xx
     const { status, data } = error.response;
     if (status === 400) {
-      // Handle specific error status codes
       toast.error(data.message || 'Bad Request');
     } else if (status === 401) {
       toast.error(data.message || 'Unauthorized');
