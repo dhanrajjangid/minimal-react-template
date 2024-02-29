@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// const API_BASE_URL = 'https://my-squad-git-main-dhanrajjangid.vercel.app'; // Your API base URL
-const API_BASE_URL = 'http://localhost:8000'; // Your API base URL
+const API_BASE_URL = 'https://my-squad-git-main-dhanrajjangid.vercel.app'; // Your API base URL
+// const API_BASE_URL = 'http://localhost:8000'; // Your API base URL
 
 const apiService = axios.create({
   baseURL: API_BASE_URL,
