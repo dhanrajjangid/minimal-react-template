@@ -56,6 +56,11 @@ const Sidebar = () => {
       icon: <AiOutlineBook />,
     },
     {
+      title: "Find Players",
+      path: "/player-listing",
+      icon: <AiOutlineBook />,
+    },
+    {
       title: "Profile",
       path: "/profile",
       icon: <AiOutlineUserProfile />,

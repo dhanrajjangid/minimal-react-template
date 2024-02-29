@@ -13,6 +13,7 @@ import Profile from "@/view/Profile";
 import Products from "@/view/Products";
 import Courses from "@/view/Courses";
 import ProductDetails from "@/view/Products/components/ProductDetails";
+import PlayerListing from "@/view/PlayerListing";
 
 const PrivateLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -87,6 +88,10 @@ const privateRoutes = [
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/player-listing",
+        element: <PlayerListing />,
       },
     ],
   },
