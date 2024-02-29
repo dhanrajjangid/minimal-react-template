@@ -23,13 +23,13 @@ export const StyledForm = styled.form`
 export const StyledTextField = styled.input`
   background-color: #ffffff;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 15px 10px;
   margin-bottom: 15px;
   width: calc(100% - 20px); /* Adjusted width */
 `;
 
 export const StyledButton = styled.button`
-  padding: 12px 0;
+  padding: 15px 0;
   background-color: #4a4a4a;
   color: #fff;
   border: none;
