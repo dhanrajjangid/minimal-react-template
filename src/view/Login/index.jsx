@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLogin } from "./apiFunctions";
 import { Container, Title, StyledForm, StyledTextField, StyledButton, SignUpLink } from "./StyledComponents";
 import * as Yup from 'yup'; // Import Yup
 import { yupResolver } from '@hookform/resolvers/yup';
+import {actions as authActions} from '@/redux/slices/authSlice'
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -15,9 +16,17 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.loggedIn);
   const user = useSelector((state) => state.auth.user);
   const login = useLogin();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      dispatch(authActions.login(JSON.parse(storedUser)));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     if (isAuthenticated) {

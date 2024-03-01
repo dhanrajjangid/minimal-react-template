@@ -1,5 +1,5 @@
 // privateRoutes.js
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import Cart from "@/view/Cart";
 import Sidebar from "@/components/Sidebar";
@@ -8,6 +8,7 @@ import Home from "@/view/Home";
 import { useSelector, useDispatch } from "react-redux";
 import Users from "@/view/Users";
 import { actions } from "@/redux/slices/sidebarSlice";
+import { actions as authActions} from '@/redux/slices/authSlice'
 import CreateUser from "@/view/CreateUser";
 import Profile from "@/view/Profile";
 import Products from "@/view/Products";
@@ -17,7 +18,17 @@ import PlayerListing from "@/view/PlayerListing";
 
 const PrivateLayout = ({ children }) => {
   const dispatch = useDispatch();
+  
   const isAuthenticated = useSelector((state) => state.auth.loggedIn);
+  
+  useEffect(() => {
+    // Check localStorage for user data and dispatch login action if user is found
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      dispatch(authActions.login(JSON.parse(storedUser)));
+    }
+  }, [dispatch]);
+
   return isAuthenticated ? (
     <div style={{ height: "100vh", display: "flex" }}>
       <Sidebar />
