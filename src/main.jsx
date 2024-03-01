@@ -4,6 +4,7 @@ import App from './App';
 import './index.css';
 import { ToastContainer } from 'react-toastify'; // Import ToastContainer as well
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 ReactDOM.render(
   <React.StrictMode>

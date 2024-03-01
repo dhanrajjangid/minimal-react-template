@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import store from '@/redux/store';
+import { setLoading } from '@/redux/slices/loadingSlice'; // Import the setLoading action
 
 const API_BASE_URL = 'https://my-squad-git-main-dhanrajjangid.vercel.app'; // Your API base URL
 // const API_BASE_URL = 'http://localhost:8000'; // Your API base URL
@@ -8,6 +10,7 @@ const apiService = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000, // Set timeout as per your requirement
 });
+
 
 // Function to handle API errors and display toast messages
 const handleApiError = (error) => {
@@ -32,9 +35,10 @@ const handleApiError = (error) => {
   }
 };
 
-// Function to make HTTP requests with error handling
+// Function to make HTTP requests with error handling and dispatching loading action
 const makeHttpRequest = async (method, endpoint, requestData) => {
   try {
+    store.dispatch(setLoading(true)); // Dispatch setLoading action to indicate loading has started
     let response;
     switch (method.toLowerCase()) {
       case 'get':
@@ -53,9 +57,11 @@ const makeHttpRequest = async (method, endpoint, requestData) => {
       default:
         throw new Error(`Unsupported HTTP method: ${method}`);
     }
+    store.dispatch(setLoading(false)); // Dispatch setLoading action to indicate loading has stopped
     return response.data;
   } catch (error) {
     handleApiError(error);
+    store.dispatch(setLoading(false)); // Dispatch setLoading action to indicate loading has stopped even in case of error
     throw error;
   }
 };

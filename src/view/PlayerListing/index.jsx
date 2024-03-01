@@ -6,13 +6,19 @@ import {
 import { usePlayerListing } from "./apiFunctions";
 import { useSelector } from "react-redux";
 import { PlayerCard } from "./Components/PlayerCard";
+import { selectLoadingState } from "@/redux/slices/loadingSlice";
+import PlayerCardSkeleton from "./Components/PlayerCardSkeleton";
 
 const PlayerListing = () => {
   const user = useSelector((state) => state.auth.user);
   const playersList = useSelector((state) => state.listing.playersList);
+  const isLoading = useSelector(selectLoadingState)
+
+  console.log(isLoading, "isloading is")
 
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [distance, setDistance] = useState(1000);
+
 
   useEffect(() => {
     const getLocation = () => {
@@ -55,27 +61,38 @@ const PlayerListing = () => {
       console.error("Login failed:", error);
     }
   };
+
   const handleDistanceChange = (event) => {
     const selectedDistance = parseInt(event.target.value, 10); // Parse selected value to integer
     setDistance(selectedDistance);
   };
+
   const distanceValues = [
     1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000
   ];
+
   return (
     <>
-    <Dropdown onChange={handleDistanceChange}>
+      <Dropdown onChange={handleDistanceChange}>
         {distanceValues.map((value) => (
           <option key={value} value={value}>
             {value / 1000} km
           </option>
         ))}
       </Dropdown>
-    <CardContainer>
-      {playersList?.map((player) => (
-        <PlayerCard key={player?.id} player={player} />
-      ))}
-    </CardContainer>
+      {isLoading ? ( 
+          <CardContainer>
+            <PlayerCardSkeleton />
+            <PlayerCardSkeleton />
+            <PlayerCardSkeleton />
+          </CardContainer>
+      ) : (
+        <CardContainer>
+          {playersList?.map((player) => (
+            <PlayerCard key={player?.id} player={player} />
+          ))}
+        </CardContainer>
+      )}
     </>
   );
 };
