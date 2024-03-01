@@ -8,14 +8,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField, ContainedButton, Container } from "@/components/Common/FormInputs";
 
 const StyledFormContainer = styled(Container)`
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 100%;
+  margin: 0
 `;
 
 const FormTitle = styled.h2`
@@ -61,7 +56,7 @@ const UserForm = () => {
 
   return (
     <StyledFormContainer>
-      <FormTitle>User Information Form</FormTitle>
+      <FormTitle>Edit Profile</FormTitle>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FieldContainer>
           <Controller

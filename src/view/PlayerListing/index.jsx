@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {
-  CardContainer,
-  Dropdown
-} from "./StyledComponents";
+import { CardContainer } from "./StyledComponents";
 import { usePlayerListing } from "./apiFunctions";
 import { useSelector } from "react-redux";
 import { PlayerCard } from "./Components/PlayerCard";
 import { selectLoadingState } from "@/redux/slices/loadingSlice";
 import PlayerCardSkeleton from "./Components/PlayerCardSkeleton";
+import { Dropdown } from "@/components/Common/FormInputs";
 
 const PlayerListing = () => {
   const user = useSelector((state) => state.auth.user);
   const playersList = useSelector((state) => state.listing.playersList);
-  const isLoading = useSelector(selectLoadingState)
+  const isLoading = useSelector(selectLoadingState);
 
-  console.log(isLoading, "isloading is")
+  console.log(isLoading, "isloading is");
 
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [distance, setDistance] = useState(1000);
-
 
   useEffect(() => {
     const getLocation = () => {
@@ -68,24 +65,35 @@ const PlayerListing = () => {
   };
 
   const distanceValues = [
-    1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000
+    1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
   ];
 
   return (
     <>
-      <Dropdown onChange={handleDistanceChange}>
-        {distanceValues.map((value) => (
-          <option key={value} value={value}>
-            {value / 1000} km
-          </option>
-        ))}
-      </Dropdown>
-      {isLoading ? ( 
-          <CardContainer>
-            <PlayerCardSkeleton />
-            <PlayerCardSkeleton />
-            <PlayerCardSkeleton />
-          </CardContainer>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: '20px'
+        }}
+      >
+        <label htmlFor="distanceDropdown">Distance:</label>
+        <Dropdown id="distanceDropdown" onChange={handleDistanceChange}>
+          {distanceValues.map((value) => (
+            <option key={value} value={value}>
+              {value / 1000} km
+            </option>
+          ))}
+        </Dropdown>
+      </div>
+
+      {isLoading ? (
+        <CardContainer>
+          <PlayerCardSkeleton />
+          <PlayerCardSkeleton />
+          <PlayerCardSkeleton />
+        </CardContainer>
       ) : (
         <CardContainer>
           {playersList?.map((player) => (

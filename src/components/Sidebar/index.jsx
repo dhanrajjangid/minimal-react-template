@@ -36,15 +36,8 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(authActions.setIsLoggedIn(false));
-    dispatch(
-      authActions.setAuthState({
-        name: null,
-        email: null,
-        token: null,
-        player_id: null,
-      })
-    );
+    dispatch(authActions.logout());
+    navigate('/login')
   };
 
   const menuItems = [
@@ -54,19 +47,9 @@ const Sidebar = () => {
       icon: <AiOutlineHome />,
     },
     {
-      title: "Users",
-      path: "/users",
-      icon: <AiOutlineUser />,
-    },
-    {
-      title: "Cart",
-      path: "/cart",
-      icon: <AiOutlineShoppingCart />,
-    },
-    {
-      title: "Create User",
-      path: "/create-user",
-      icon: <AiOutlineUserAdd />,
+      title: "Find Players",
+      path: "/player-listing",
+      icon: <AiOutlineBook />,
     },
     {
       title: "Products",
@@ -74,20 +57,33 @@ const Sidebar = () => {
       icon: <AiOutlineAppstore />,
     },
     {
-      title: "Courses",
-      path: "/courses",
-      icon: <AiOutlineBook />,
-    },
-    {
-      title: "Find Players",
-      path: "/player-listing",
-      icon: <AiOutlineBook />,
-    },
-    {
       title: "Profile",
       path: "/profile",
       icon: <AiOutlineUserProfile />,
     },
+    // {
+    //   title: "Users",
+    //   path: "/users",
+    //   icon: <AiOutlineUser />,
+    // },
+    // {
+    //   title: "Cart",
+    //   path: "/cart",
+    //   icon: <AiOutlineShoppingCart />,
+    // },
+    // {
+    //   title: "Create User",
+    //   path: "/create-user",
+    //   icon: <AiOutlineUserAdd />,
+    // },
+    
+    // {
+    //   title: "Courses",
+    //   path: "/courses",
+    //   icon: <AiOutlineBook />,
+    // },
+    
+    
   ];
 
   return (

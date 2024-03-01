@@ -17,7 +17,7 @@ const Container = styled.div`
 const App = () => {
   return (
     <Container>
-      <Profile />
+      {/* <Profile /> */}
       <UserForm />
     </Container>
   );

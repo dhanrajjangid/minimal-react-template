@@ -22,10 +22,6 @@ const ProfileImage = styled.img`
   margin-bottom: 15px;
 `;
 
-const AboutSection = styled.div`
-  font-size: 16px;
-  line-height: 1.5;
-`;
 
 const Profile = () => {
   return (
@@ -35,13 +31,6 @@ const Profile = () => {
         src={ProfileImg} // Replace with your profile image URL
         alt="Profile"
       />
-      <AboutSection>
-        <p>
-          Hi, I'm Admin User! Welcome to my profile. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit. Nullam in justo vitae velit
-          posuere accumsan.
-        </p>
-      </AboutSection>
     </StyledProfileContainer>
   );
 };

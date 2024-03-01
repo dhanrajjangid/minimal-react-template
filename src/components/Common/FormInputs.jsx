@@ -7,6 +7,7 @@ export const TextField = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   max-width: 100%;
+  font-size: 1rem;
 `;
 
 // Dropdown component
@@ -27,7 +28,7 @@ export const DatePicker = styled.input`
 
 // Button component (Contained)
 export const ContainedButton = styled.button`
-  padding: 10px 20px;
+  padding: 15px 20px;
   border: none;
   width: 100%;
   border-radius: 5px;
@@ -43,12 +44,11 @@ export const ContainedButton = styled.button`
 
 // Button component (Outlined)
 export const OutlinedButton = styled.button`
-  padding: 10px 20px;
+  padding: 15px 20px;
   width: 100%;
   border: 2px solid #333;
   border-radius: 5px;
   background-color: transparent;
-  color: #007bff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

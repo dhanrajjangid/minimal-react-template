@@ -7,7 +7,8 @@ export const CardContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 15px
+  padding: 1px;
+  margin-top: 15px;
 `;
 
 export const Dropdown = styled.select`

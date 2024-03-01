@@ -26,6 +26,7 @@ export const StyledTextField = styled.input`
   padding: 15px 10px;
   margin-bottom: 15px;
   width: calc(100% - 20px); /* Adjusted width */
+  font-size: 1rem
 `;
 
 export const StyledButton = styled.button`
