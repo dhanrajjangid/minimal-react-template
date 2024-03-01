@@ -10,7 +10,9 @@ export const HomeContainer = styled.div`
 
 export const Tagline = styled.h1`
   font-size: 48px;
+  line-height: 3.5rem;
   margin-bottom: 20px;
+  font-weight: 500
 `;
 
 export const SubText = styled.span`
