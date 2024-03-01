@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   CardContainer,
+  Dropdown
 } from "./StyledComponents";
 import { usePlayerListing } from "./apiFunctions";
 import { useSelector } from "react-redux";
@@ -11,6 +12,7 @@ const PlayerListing = () => {
   const playersList = useSelector((state) => state.listing.playersList);
 
   const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [distance, setDistance] = useState(1000);
 
   useEffect(() => {
     const getLocation = () => {
@@ -30,11 +32,11 @@ const PlayerListing = () => {
   }, []);
 
   useEffect(() => {
-    if (location.latitude) {
+    if (location.latitude && distance) {
       updateUserLocation();
       getPlayers();
     }
-  }, [location]);
+  }, [location, distance]);
 
   const { updateLocation, getPlayerList } = usePlayerListing();
 
@@ -48,17 +50,33 @@ const PlayerListing = () => {
 
   const getPlayers = async () => {
     try {
-      await getPlayerList(location.latitude, location.longitude);
+      await getPlayerList(location.latitude, location.longitude, distance);
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
+  const handleDistanceChange = (event) => {
+    const selectedDistance = parseInt(event.target.value, 10); // Parse selected value to integer
+    setDistance(selectedDistance);
+  };
+  const distanceValues = [
+    1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000
+  ];
   return (
+    <>
+    <Dropdown onChange={handleDistanceChange}>
+        {distanceValues.map((value) => (
+          <option key={value} value={value}>
+            {value / 1000} km
+          </option>
+        ))}
+      </Dropdown>
     <CardContainer>
       {playersList?.map((player) => (
         <PlayerCard key={player?.id} player={player} />
       ))}
     </CardContainer>
+    </>
   );
 };
 

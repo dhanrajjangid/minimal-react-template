@@ -18,10 +18,10 @@ export const usePlayerListing = () => {
     }
   };
 
-  const getPlayerList = async (latitude, longitude) => {
+  const getPlayerList = async (latitude, longitude, distance) => {
     try {
       const response = await getApiData(
-        `/location/search-players?latitude=${latitude}&longitude=${longitude}`
+        `/location/search-players?latitude=${latitude}&longitude=${longitude}&distance=${distance}`
       );
       dispatch(listingActions.setPlayerListState(response?.data));
 

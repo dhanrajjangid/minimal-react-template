@@ -10,6 +10,16 @@ export const CardContainer = styled.div`
   padding: 15px
 `;
 
+export const Dropdown = styled.select`
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+`;
+
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
