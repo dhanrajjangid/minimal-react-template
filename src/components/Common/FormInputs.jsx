@@ -16,6 +16,29 @@ export const Dropdown = styled.select`
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
+  appearance: none; /* Remove default arrow icon */
+  background-color: #fff; /* Set background color */
+  font-size: 16px; /* Adjust font size */
+  line-height: 1.5; /* Adjust line height */
+  cursor: pointer; /* Show pointer cursor */
+  outline: none; /* Remove default focus outline */
+  -webkit-appearance: none; /* For older versions of iOS */
+  -moz-appearance: none; /* For older versions of Firefox */
+
+  /* Add custom arrow icon */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Adjust position of arrow icon */
+  background-size: 16px 16px; /* Adjust size of arrow icon */
+`;
+
+export const DropdownContainer = styled.div`
+  width: 100%;
+`;
+
+export const Label = styled.label`
+  display: block;
+  margin-bottom: 5px;
 `;
 
 // Date Picker component

@@ -28,6 +28,7 @@ body {
 button {
   font-family: inherit;
   cursor: pointer;
+  color: #333
 }
 
 .flex {

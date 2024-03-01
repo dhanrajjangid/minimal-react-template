@@ -53,7 +53,7 @@ export const Icon = styled.div`
 export const LogoutButton = styled(SidebarItem)`
   cursor: pointer;
   margin-top: auto; /* Aligns to the bottom */
-  margin-bottom: 60px; /* Add some spacing */
+  margin-bottom: 100px; /* Add some spacing */
   margin-left: 1.5em; /* Adjust the left margin */
   background-color: #fff;
   &:hover {

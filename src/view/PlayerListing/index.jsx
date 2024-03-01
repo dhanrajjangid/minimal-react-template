@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { PlayerCard } from "./Components/PlayerCard";
 import { selectLoadingState } from "@/redux/slices/loadingSlice";
 import PlayerCardSkeleton from "./Components/PlayerCardSkeleton";
-import { Dropdown } from "@/components/Common/FormInputs";
+import { Dropdown, DropdownContainer, Label } from "@/components/Common/FormInputs";
 
 const PlayerListing = () => {
   const user = useSelector((state) => state.auth.user);
@@ -70,24 +70,18 @@ const PlayerListing = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: '20px'
-        }}
-      >
-        <label htmlFor="distanceDropdown">Distance:</label>
-        <Dropdown id="distanceDropdown" onChange={handleDistanceChange}>
+    <div style={{padding: '10px'}}>
+      <DropdownContainer>
+        <Label >Distance:</Label>
+        <Dropdown onChange={handleDistanceChange}>
           {distanceValues.map((value) => (
             <option key={value} value={value}>
               {value / 1000} km
             </option>
           ))}
         </Dropdown>
+      </DropdownContainer>
       </div>
-
       {isLoading ? (
         <CardContainer>
           <PlayerCardSkeleton />
