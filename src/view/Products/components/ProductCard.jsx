@@ -13,8 +13,8 @@ const Card = styled.div`
   overflow: hidden;
 
   @media (max-width: 600px) {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
   }
 `;
 
@@ -41,19 +41,19 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin: 0px;
   color: #333;
 
   @media (max-width: 600px) {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 `;
 
 const Price = styled.p`
   color: #555;
   margin: 0px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-right: 8px;
 `;

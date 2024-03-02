@@ -13,7 +13,6 @@ const Container = styled.div`
   align-items: column;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
   background-color: #fff;
   color: #000;
 `;
