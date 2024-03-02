@@ -13,7 +13,7 @@ const Home = () => {
       <SubText>Empowering Athletes Everywhere</SubText>
       <ButtonContainer>
         <ContainedButton onClick={()=> navigate('/player-listing')}>FIND PLAYERS</ContainedButton>
-        <OutlinedButton>BROWSE PRODUCTS</OutlinedButton>
+        <OutlinedButton onClick={()=> navigate('/team-listing')}>Find Teams</OutlinedButton>
       </ButtonContainer>
     </HomeContainer>
   );

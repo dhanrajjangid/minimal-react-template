@@ -7,6 +7,8 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUserAdd,
   AiOutlineAppstore,
+  AiOutlineTeam,
+  AiOutlineScan,
   AiOutlineBook,
   AiOutlineUser as AiOutlineUserProfile,
   AiOutlineLogout,
@@ -47,14 +49,19 @@ const Sidebar = () => {
       icon: <AiOutlineHome />,
     },
     {
+      title: "Find Teams",
+      path: "/team-listing",
+      icon: <AiOutlineTeam  />,
+    },
+    {
       title: "Find Players",
       path: "/player-listing",
-      icon: <AiOutlineBook />,
+      icon: <AiOutlineScan />,
     },
     {
       title: "Products",
       path: "/products",
-      icon: <AiOutlineAppstore />,
+      icon: <AiOutlineShoppingCart  />,
     },
     {
       title: "Profile",
