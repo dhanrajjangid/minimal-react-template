@@ -1,48 +1,38 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+
 import { useForm, Controller } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 // Import common components
 import {
+  Form,
+  FieldContainer,
+  ErrorMessage
+} from './StyledComponents'
+
+import {
   UnderlinedTextField,
   ContainedButton,
 } from "@/components/Common/FormInputs";
+import { useProfile } from "../profileApi";
 
-const Form = styled.form`
-  max-width: 100%;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 1rem;
-`;
 
-const FieldContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  text-align: left;
-  max-width: 100%;
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  font-size: 12px; /* Adjust the font size */
-  margin-top: 5px; /* Adjust as needed */
-`;
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
-  position: Yup.string().required("Position is required"),
   city: Yup.string().required("City is required"),
   state: Yup.string().required("State is required"),
   phoneNumber: Yup.string().required("Phone number is required"),
 });
 
 const UserForm = () => {
+  const player_id = JSON.parse(localStorage.getItem('user'))?.player_id
+  const {getPlayerById, updatePlayer} = useProfile()
   const {
     control,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -50,7 +40,7 @@ const UserForm = () => {
   });
 
   const onSubmit = (data) => {
-    alert("Form submitted successfully!");
+    updatePlayer(player_id, data)
   };
 
   const fields = [
@@ -65,9 +55,9 @@ const UserForm = () => {
       validation: validationSchema.fields.email,
     },
     {
-      name: "position",
-      placeholder: "Position",
-      validation: validationSchema.fields.position,
+      name: "phoneNumber",
+      placeholder: "Phone Number",
+      validation: validationSchema.fields.phoneNumber,
     },
     {
       name: "city",
@@ -79,12 +69,23 @@ const UserForm = () => {
       placeholder: "State",
       validation: validationSchema.fields.state,
     },
-    {
-      name: "phoneNumber",
-      placeholder: "Phone Number",
-      validation: validationSchema.fields.phoneNumber,
-    },
+    
   ];
+
+  useEffect(()=> {
+    getPlayerDetails()
+  }, [player_id])
+
+  const getPlayerDetails = async () => {
+    const details = await getPlayerById(player_id)
+    if (details?.player) {
+        setValue('name', details?.player?.name);
+        setValue('email', details?.player?.email);
+        setValue('phoneNumber', details?.player?.phoneNumber);
+        setValue('city', details?.player?.city ?? "");
+        setValue('state', details?.player?.state);
+    }
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
