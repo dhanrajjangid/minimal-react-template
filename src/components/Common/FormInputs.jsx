@@ -10,6 +10,20 @@ export const TextField = styled.input`
   font-size: 1rem;
 `;
 
+export const UnderlinedTextField = styled.input`
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  max-width: 100%;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 5px;
+  }
+`;
+
 // Dropdown component
 export const Dropdown = styled.select`
   padding: 10px;
@@ -61,7 +75,9 @@ export const ContainedButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #333;
   }
 `;
 
@@ -76,7 +92,7 @@ export const OutlinedButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #007bff;
+    background-color: #333;
     color: #fff;
   }
 `;

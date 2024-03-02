@@ -5,21 +5,16 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 // Import common components
-import { TextField, ContainedButton, Container } from "@/components/Common/FormInputs";
-
-const StyledFormContainer = styled(Container)`
-  padding: 20px;
-  text-align: center;
-  margin: 0
-`;
-
-const FormTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
+import {
+  UnderlinedTextField,
+  ContainedButton,
+} from "@/components/Common/FormInputs";
 
 const Form = styled.form`
-  width: 100%; 
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
 `;
 
 const FieldContainer = styled.div`
@@ -46,7 +41,11 @@ const validationSchema = Yup.object().shape({
 });
 
 const UserForm = () => {
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
@@ -54,91 +53,65 @@ const UserForm = () => {
     alert("Form submitted successfully!");
   };
 
+  const fields = [
+    {
+      name: "name",
+      placeholder: "Name",
+      validation: validationSchema.fields.name,
+    },
+    {
+      name: "email",
+      placeholder: "Email",
+      validation: validationSchema.fields.email,
+    },
+    {
+      name: "position",
+      placeholder: "Position",
+      validation: validationSchema.fields.position,
+    },
+    {
+      name: "city",
+      placeholder: "City",
+      validation: validationSchema.fields.city,
+    },
+    {
+      name: "state",
+      placeholder: "State",
+      validation: validationSchema.fields.state,
+    },
+    {
+      name: "phoneNumber",
+      placeholder: "Phone Number",
+      validation: validationSchema.fields.phoneNumber,
+    },
+  ];
+
   return (
-    <StyledFormContainer>
-      <FormTitle>Edit Profile</FormTitle>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <FieldContainer>
-          <Controller
-            name="name"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <TextField {...field} placeholder="Name" />
-                {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-              </>
-            )}
-          />
-        </FieldContainer>
-        <FieldContainer>
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <TextField {...field} placeholder="Email" />
-                {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-              </>
-            )}
-          />
-        </FieldContainer>
-        <FieldContainer>
-          <Controller
-            name="position"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <TextField {...field} placeholder="Position" />
-                {errors.position && <ErrorMessage>{errors.position.message}</ErrorMessage>}
-              </>
-            )}
-          />
-        </FieldContainer>
-        <FieldContainer>
-          <Controller
-            name="city"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <TextField {...field} placeholder="City" />
-                {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
-              </>
-            )}
-          />
-        </FieldContainer>
-        <FieldContainer>
-          <Controller
-            name="state"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <TextField {...field} placeholder="State" />
-                {errors.state && <ErrorMessage>{errors.state.message}</ErrorMessage>}
-              </>
-            )}
-          />
-        </FieldContainer>
-        <FieldContainer>
-          <Controller
-            name="phoneNumber"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <>
-                <TextField {...field} placeholder="Phone Number" />
-                {errors.phoneNumber && <ErrorMessage>{errors.phoneNumber.message}</ErrorMessage>}
-              </>
-            )}
-          />
-        </FieldContainer>
-        <ContainedButton type="submit">Submit</ContainedButton>
-      </Form>
-    </StyledFormContainer>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      {fields.map((item, index) => {
+        return (
+          <FieldContainer>
+            <Controller
+              name={item.name}
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <UnderlinedTextField
+                    {...field}
+                    placeholder={item.placeholder}
+                  />
+                  {errors[field.name] && (
+                    <ErrorMessage>{errors[field.name].message}</ErrorMessage>
+                  )}
+                </>
+              )}
+            />
+          </FieldContainer>
+        );
+      })}
+      <ContainedButton type="submit">Submit</ContainedButton>
+    </Form>
   );
 };
 

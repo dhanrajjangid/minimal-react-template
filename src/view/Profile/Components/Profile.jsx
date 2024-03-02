@@ -2,12 +2,20 @@
 import React from "react";
 import styled from "styled-components";
 import ProfileImg from "@/assets/images/profile.jpg";
+import UserForm from "./UserForm";
 
 const StyledProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   text-align: center;
+  width: 50%
+
+  @media (max-width: 768px){
+    max-width: 100%
+  }
 `;
 
 const ProfileTitle = styled.h4`
@@ -22,15 +30,15 @@ const ProfileImage = styled.img`
   margin-bottom: 15px;
 `;
 
-
 const Profile = () => {
   return (
     <StyledProfileContainer>
-      <ProfileTitle>Admin User</ProfileTitle>
+      <ProfileTitle>Profile</ProfileTitle>
       <ProfileImage
         src={ProfileImg} // Replace with your profile image URL
         alt="Profile"
       />
+      <UserForm />
     </StyledProfileContainer>
   );
 };
