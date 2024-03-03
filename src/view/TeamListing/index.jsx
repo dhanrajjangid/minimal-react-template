@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CardContainer } from "./StyledComponents";
-import { usePlayerListing } from "./apiFunctions";
+import { useTeamListing } from "./apiFunctions";
 import { useSelector } from "react-redux";
 import { TeamCard } from "./Components/TeamCard";
 import { selectLoadingState } from "@/redux/slices/loadingSlice";
