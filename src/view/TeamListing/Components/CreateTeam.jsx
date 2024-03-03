@@ -38,6 +38,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateTeam = () => {
   const navigate = useNavigate();
+  const player_id = JSON.parse(localStorage.getItem('user'))?.player_id
   const {createTeamApi} = useTeamListing()
   const {
     control,
@@ -51,7 +52,7 @@ const CreateTeam = () => {
     // Implement your submission logic here, e.g., calling an API function
     // createTeam(data);
     console.log(data, "form datais consoled");
-    createTeamApi(data)
+    createTeamApi(player_id, data)
   };
 
   const durationOptions = [

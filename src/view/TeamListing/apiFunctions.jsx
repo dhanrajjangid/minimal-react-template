@@ -1,20 +1,23 @@
 import { postApiData } from "@/services/ApiService";
-import { useDispatch } from "react-redux";
-
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 export const useTeamListing = () => {
+  const navigate = useNavigate();
 
-  const createTeamApi = async (player_id, location) => {
-    alert("Create team feature is under maintainance. Thank You!")
-    // try {
-    //   const response = await postApiData(
-    //     `/location/player-location/${player_id}`,
-    //     location
-    //   );
-    //   return response;
-    // } catch (error) {
-    //   console.error("Login failed:", error);
-    //   throw error;
-    // }
+  const createTeamApi = async (player_id, data) => {
+    const payload = {...data, player_id: player_id}
+    try {
+      const response = await postApiData(
+        `/teams/addTeam`,
+        payload
+      );
+      toast.success(response?.message ?? "Team created successfully")
+      navigate('/team-listing')
+      return response;
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error;
+    }
   };
 
   return { createTeamApi };

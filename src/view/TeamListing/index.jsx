@@ -50,23 +50,23 @@ const TeamListing = () => {
   //   }
   // }, [location, distance]);
 
-  const { updateLocation, getPlayerList } = usePlayerListing();
+  // const { updateLocation, getPlayerList } = usePlayerListing();
 
   const updateUserLocation = async () => {
-    try {
-      await updateLocation(user.player_id, location);
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
+    // try {
+    //   await updateLocation(user.player_id, location);
+    // } catch (error) {
+    //   console.error("Login failed:", error);
+    // }
   };
 
-  const getPlayers = async () => {
-    try {
-      await getPlayerList(location.latitude, location.longitude, distance);
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
+  // const getPlayers = async () => {
+  //   try {
+  //     await getPlayerList(location.latitude, location.longitude, distance);
+  //   } catch (error) {
+  //     console.error("Login failed:", error);
+  //   }
+  // };
 
   const handleDistanceChange = (event) => {
     const selectedDistance = parseInt(event.target.value, 10); // Parse selected value to integer
