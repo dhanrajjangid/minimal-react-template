@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   playersList: [],
+  teamsList: []
 };
 
 const authSlice = createSlice({
@@ -10,6 +11,9 @@ const authSlice = createSlice({
   reducers: {
     setPlayerListState: (state, action) => {
       state.playersList = action.payload;
+    },
+    setTeamListState: (state, action) => {
+      state.teamsList = action.payload;
     }
   },
 });

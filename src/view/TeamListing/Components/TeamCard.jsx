@@ -4,17 +4,28 @@ import {
   ProfilePhoto,
   TeamDetails,
   TeamName,
-  AvailableSpots,
-  Date,
-  Venue,
-  ButtonOutlined,
-  ButtonContained,
+  SubText,
   ActionButtons,
-  TeamContent
+  TeamContent,
 } from "../StyledComponents";
-import { ContainedButton, OutlinedButton } from "@/components/Common/FormInputs";
+import {
+  ContainedButton,
+  OutlinedButton,
+} from "@/components/Common/FormInputs";
+import dayjs from "dayjs";
+import "dayjs/locale/en";
+
+const bold = {
+  fontWeight: "bold",
+};
 
 export const TeamCard = ({ team }) => {
+  console.log(team, "teams is consoled");
+
+  const date = team?.date;
+  const formattedDate = dayjs(date)
+    ?.locale("en")
+    ?.format("DD MMMM, YYYY - hh:mm A");
   return (
     <Card>
       <TeamContent>
@@ -23,10 +34,16 @@ export const TeamCard = ({ team }) => {
           alt={team?.name}
         /> */}
         <TeamDetails>
-          <TeamName>Test Team</TeamName>
-          <AvailableSpots>Available Spots: 5</AvailableSpots>
-          <Date>Date: {'13 March 2024'}</Date>
-          <Venue>Venue: {'Joga Bonito'}</Venue>
+          <TeamName>{team?.teamName}</TeamName>
+          <SubText>
+            <span style={bold}>Available Spots:</span> {team?.remaining}
+          </SubText>
+          <SubText>
+            <span style={bold}>Date:</span> {formattedDate}
+          </SubText>
+          <SubText>
+            <span style={bold}>Venue:</span> {team.venue}
+          </SubText>
         </TeamDetails>
       </TeamContent>
       <ActionButtons>

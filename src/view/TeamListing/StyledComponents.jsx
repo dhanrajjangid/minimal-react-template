@@ -44,21 +44,17 @@ export const TeamDetails = styled.div`
   width: 100%;
 `;
 
-export const TeamName = styled.h3`
+export const TeamName = styled.h2`
   margin: 5px 0;
+  border-bottom: 1px dotted #333
 `;
 
-export const AvailableSpots = styled.p`
-  margin: 5px 0;
-`;
 
-export const Date = styled.p`
+export const SubText = styled.p`
   margin: 5px 0;
-`;
-
-export const Venue = styled.p`
-  margin: 5px 0;
-`;
+  display: flex;
+  justify-content: space-between;
+`
 
 export const ActionButtons = styled.div`
   display: flex;

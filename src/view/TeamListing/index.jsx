@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CardContainer } from "./StyledComponents";
 import { useTeamListing } from "./apiFunctions";
+import { usePlayerListing } from "@/view/PlayerListing/apiFunctions";
 import { useSelector } from "react-redux";
 import { TeamCard } from "./Components/TeamCard";
 import { selectLoadingState } from "@/redux/slices/loadingSlice";
@@ -19,9 +20,13 @@ import { useNavigate } from "react-router-dom";
 
 const TeamListing = () => {
   const navigate = useNavigate()
-  const user = useSelector((state) => state.auth.user);
-  const playersList = useSelector((state) => state.listing.playersList);
+
+  const { updateLocation } = usePlayerListing();
+  const { getTeamList } = useTeamListing();
+
+  const teamsList = useSelector((state) => state.listing.teamsList);
   const isLoading = useSelector(selectLoadingState);
+  const player_id = JSON.parse(localStorage.getItem('user'))?.player_id
 
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [distance, setDistance] = useState(1000);
@@ -43,30 +48,31 @@ const TeamListing = () => {
     getLocation();
   }, []);
 
-  // useEffect(() => {
-  //   if (location.latitude && distance) {
-  //     updateUserLocation();
-  //     getPlayers();
-  //   }
-  // }, [location, distance]);
+  useEffect(() => {
+    if (location.latitude && distance) {
+      // updateUserLocation();
+      getTeams();
+    }
+  }, [location, distance]);
 
-  // const { updateLocation, getPlayerList } = usePlayerListing();
+  
+
 
   const updateUserLocation = async () => {
-    // try {
-    //   await updateLocation(user.player_id, location);
-    // } catch (error) {
-    //   console.error("Login failed:", error);
-    // }
+    try {
+      await updateLocation(player_id, location);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
-  // const getPlayers = async () => {
-  //   try {
-  //     await getPlayerList(location.latitude, location.longitude, distance);
-  //   } catch (error) {
-  //     console.error("Login failed:", error);
-  //   }
-  // };
+  const getTeams = async () => {
+    try {
+      await getTeamList(location.latitude, location.longitude, distance);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   const handleDistanceChange = (event) => {
     const selectedDistance = parseInt(event.target.value, 10); // Parse selected value to integer
@@ -76,10 +82,6 @@ const TeamListing = () => {
   const distanceValues = [
     1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
   ];
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   return (
     <>
@@ -110,7 +112,7 @@ const TeamListing = () => {
           <ContainedButton onClick={()=> navigate('/team-listing/create')}>+ Create Team</ContainedButton>
         </div>
       </div>
-      {2 < 1 ? (
+      {isLoading ? (
         <CardContainer>
           <PlayerCardSkeleton />
           <PlayerCardSkeleton />
@@ -118,8 +120,8 @@ const TeamListing = () => {
         </CardContainer>
       ) : (
         <CardContainer>
-          {[1, 2, 3, "playersList"]?.map((player) => (
-            <TeamCard key={player?.id} player={player} />
+          {teamsList?.map((team) => (
+            <TeamCard key={team?._id} team={team} />
           ))}
         </CardContainer>
       )}
