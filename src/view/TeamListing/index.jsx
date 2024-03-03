@@ -23,8 +23,6 @@ const TeamListing = () => {
   const playersList = useSelector((state) => state.listing.playersList);
   const isLoading = useSelector(selectLoadingState);
 
-  console.log(isLoading, "isloading is");
-
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [distance, setDistance] = useState(1000);
 
@@ -82,7 +80,6 @@ const TeamListing = () => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  console.log("Selected Date:", selectedDate);
 
   return (
     <>

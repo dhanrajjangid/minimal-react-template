@@ -46,12 +46,10 @@ const Cart = () => {
     const updatedCartItems = dummyCartItems.map((item) =>
       item.id === itemId ? { ...item, quantity: newQuantity } : item
     );
-    console.log('Updated Cart Items:', updatedCartItems);
   };
 
   const handleDeleteItem = (itemId) => {
     const updatedCartItems = dummyCartItems.filter((item) => item.id !== itemId);
-    console.log('Updated Cart Items:', updatedCartItems);
   };
 
   const calculateTotal = () => {

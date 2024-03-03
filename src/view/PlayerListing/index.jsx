@@ -12,8 +12,6 @@ const PlayerListing = () => {
   const playersList = useSelector((state) => state.listing.playersList);
   const isLoading = useSelector(selectLoadingState);
 
-  console.log(isLoading, "isloading is");
-
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [distance, setDistance] = useState(1000);
 

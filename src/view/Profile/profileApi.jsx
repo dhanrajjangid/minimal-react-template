@@ -14,7 +14,6 @@ export const useProfile = () => {
   };
 
   const updatePlayer = async (player_id, details) => {
-    console.log(details, "Details are ss")
     try {
       const response = await putApiData(`/players/update-player/${player_id}`, details);
       toast.success('Profile updated successfully');

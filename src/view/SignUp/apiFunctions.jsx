@@ -6,7 +6,6 @@ export const useRegister = () => {
   const register = async ({name, email, password}) => {
     try {
       const response = await postApiData('/players/register', { name, email, password });
-      console.log(response, "token,token,");
       navigate('/login');
 
       return;

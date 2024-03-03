@@ -50,7 +50,7 @@ const DatePickerWrapper = styled.div`
 `;
 
 export const CustomDatePicker = ({onChange }) => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
 
   const handleDateChange = (date) => {
     setStartDate(date);

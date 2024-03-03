@@ -24,12 +24,12 @@ import { CustomDatePicker } from "@/components/Common/DatePickers";
 import { useNavigate } from "react-router-dom";
 
 // Import your API function for creating a team, if available
-// import { createTeam } from "../teamApi";
+import { useTeamListing } from '../apiFunctions'
 
 const validationSchema = Yup.object().shape({
   teamName: Yup.string().required("Team Name is required"),
   venue: Yup.string().required("Venue is required"),
-  date: Yup.date().required("Date is required"),
+  date: Yup.string().required("Date is required"),
   duration: Yup.string().required("Duration is required"),
   capacity: Yup.number()
     .required("Capacity is required")
@@ -37,7 +37,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateTeam = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {createTeamApi} = useTeamListing()
   const {
     control,
     handleSubmit,
@@ -49,7 +50,8 @@ const CreateTeam = () => {
   const onSubmit = (data) => {
     // Implement your submission logic here, e.g., calling an API function
     // createTeam(data);
-    console.log(data);
+    console.log(data, "form datais consoled");
+    createTeamApi(data)
   };
 
   const durationOptions = [
@@ -73,6 +75,7 @@ const CreateTeam = () => {
       name: "teamName",
       placeholder: "Team Name",
       validation: validationSchema.fields.teamName,
+      type: "text",
     },
     {
       name: "venue",
@@ -85,6 +88,7 @@ const CreateTeam = () => {
       placeholder: "Capacity",
       type: "number",
       validation: validationSchema.fields.capacity,
+      defaultValue: 0,
     },
     {
       name: "date",
@@ -110,15 +114,14 @@ const CreateTeam = () => {
               <Controller
                 name={item.name}
                 control={control}
-                defaultValue=""
                 render={({ field }) => (
                   <>
                     {item.type === "date" ? (
                       <div
                         style={{
                           width: "100%",
-                          padding: '0.5rem',
-                          boxSizing: 'border-box',
+                          padding: "0.5rem",
+                          boxSizing: "border-box",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
@@ -135,8 +138,8 @@ const CreateTeam = () => {
                           <div
                             style={{
                               width: "100%",
-                              padding: '0.5rem',
-                          boxSizing: 'border-box',
+                              padding: "0.5rem",
+                              boxSizing: "border-box",
 
                               display: "flex",
                               alignItems: "center",
@@ -162,6 +165,7 @@ const CreateTeam = () => {
                         ) : (
                           <UnderlinedTextField
                             {...field}
+                            type={item.type}
                             placeholder={item.placeholder}
                           />
                         )}
@@ -177,9 +181,11 @@ const CreateTeam = () => {
           );
         })}
         <ActionButtons>
-          <OutlinedButton onClick={()=> navigate('/team-listing')}>Cancel</OutlinedButton>
+          <OutlinedButton onClick={() => navigate("/team-listing")}>
+            Cancel
+          </OutlinedButton>
           <ContainedButton type="submit">Submit</ContainedButton>
-      </ActionButtons>
+        </ActionButtons>
       </Form>
     </>
   );

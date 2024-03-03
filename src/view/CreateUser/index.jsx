@@ -79,7 +79,6 @@ const CreateUserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can perform form submission logic here, e.g., send data to the server
-    console.log('Form submitted:', formData);
   };
 
   return (

@@ -10,7 +10,9 @@ export const TextField = styled.input`
   font-size: 1rem;
 `;
 
-export const UnderlinedTextField = styled.input`
+export const UnderlinedTextField = styled.input.attrs(props => ({
+  type: props.type === "number" ? "number" : "text"
+}))`
 box-sizing: border-box;
   padding: 10px;
   border: none;
