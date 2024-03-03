@@ -37,5 +37,18 @@ export const useTeamListing = () => {
     }
   }
 
-  return { createTeamApi, getTeamList };
+  const getMyTeams = async (player_id) => {
+    try{
+      const response = await getApiData(
+        `/teams/getTeamsByPlayerId/${player_id}`
+      );
+      dispatch(listingActions.setTeamListState(response?.data));
+
+      return response
+    } catch (error){
+      console.error("Failed to fetch team list", error)
+    }
+  }
+
+  return { createTeamApi, getTeamList, getMyTeams };
 };

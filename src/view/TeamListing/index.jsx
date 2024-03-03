@@ -11,25 +11,28 @@ import {
   Dropdown,
   DropdownContainer,
   Label,
-  OutlinedButton,
 } from "@/components/Common/FormInputs";
-import { ButtonContainer } from "../Home/Components/StyledComponents";
-import UnderConstruction from "@/components/Common/UnderConstruction";
-import { CustomDatePicker } from "@/components/Common/DatePickers";
+import { Tabs } from "@/components/Common/Tabs";
 import { useNavigate } from "react-router-dom";
 
+const tabItems = [
+  { id: 1, label: "Explore" },
+  { id: 2, label: "My Teams" },
+];
+
 const TeamListing = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { updateLocation } = usePlayerListing();
-  const { getTeamList } = useTeamListing();
+  const { getTeamList, getMyTeams } = useTeamListing();
 
   const teamsList = useSelector((state) => state.listing.teamsList);
   const isLoading = useSelector(selectLoadingState);
-  const player_id = JSON.parse(localStorage.getItem('user'))?.player_id
+  const player_id = JSON.parse(localStorage.getItem("user"))?.player_id;
 
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [distance, setDistance] = useState(1000);
+  const [activeTab, setActiveTab] = useState(tabItems[0]?.id); // State to keep track of active tab
 
   useEffect(() => {
     const getLocation = () => {
@@ -49,12 +52,13 @@ const TeamListing = () => {
   }, []);
 
   useEffect(() => {
-    if (location.latitude && distance) {
+    if (activeTab === 1 && location.latitude && distance) {
       // updateUserLocation();
       getTeams();
+    } else if (activeTab === 2 && player_id) {
+      getMyTeams(player_id)
     }
-  }, [location, distance]);
-
+  }, [location, distance, activeTab, player_id]);
   
 
 
@@ -79,52 +83,58 @@ const TeamListing = () => {
     setDistance(selectedDistance);
   };
 
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+  };
+
   const distanceValues = [
     1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
   ];
 
   return (
     <>
+      <Tabs
+        tabs={tabItems}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
       {/* <CustomDatePicker onChange={handleDateChange} /> */}
+      {activeTab === 1 ? (
+        <DropdownContainer>
+          <Label>Distance:</Label>
+          <Dropdown onChange={handleDistanceChange}>
+            {distanceValues.map((value) => (
+              <option key={value} value={value}>
+                {value / 1000} km
+              </option>
+            ))}
+          </Dropdown>
+        </DropdownContainer>
+      ) : activeTab === 2 ? (
+        <ContainedButton onClick={() => navigate("/team-listing/create")}>
+          + Create Team
+        </ContainedButton>
+      ) : null}
 
-      <div
-        style={{
-          padding: "10px",
-          display: "flex",
-          gap: "2rem",
-          alignItems: "end",
-          borderBottom: "1px solid #333"
-        }}
-      >
-        <div style={{ width: "50%" }}>
-          <DropdownContainer>
-            <Label>Distance:</Label>
-            <Dropdown safari={true} onChange={handleDistanceChange}>
-              {distanceValues.map((value) => (
-                <option key={value} value={value}>
-                  {value / 1000} km
-                </option>
-              ))}
-            </Dropdown>
-          </DropdownContainer>
-        </div>
-        <div style={{ width: "50%" }}>
-          <ContainedButton onClick={()=> navigate('/team-listing/create')}>+ Create Team</ContainedButton>
-        </div>
-      </div>
       {isLoading ? (
         <CardContainer>
           <PlayerCardSkeleton />
           <PlayerCardSkeleton />
           <PlayerCardSkeleton />
         </CardContainer>
-      ) : (
+      ) : activeTab === 1 ? (
         <CardContainer>
           {teamsList?.map((team) => (
             <TeamCard key={team?._id} team={team} />
           ))}
         </CardContainer>
-      )}
+      ) : activeTab === 2 ? (
+        <CardContainer>
+          {teamsList?.map((team) => (
+            <TeamCard key={team?._id} team={team} myTeam />
+          ))}
+        </CardContainer>
+      ) : null}
     </>
   );
 };
