@@ -62,7 +62,7 @@ export const Label = styled.label`
 // Button component (Contained)
 export const ContainedButton = styled.button`
 box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 15px 20px;
   width: 100%;
   border-radius: 5px;
   background-color: #333;
@@ -81,7 +81,7 @@ box-sizing: border-box;
 export const OutlinedButton = styled.button`
 box-sizing: border-box;
 
-  padding: 10px 20px;
+  padding: 15px 20px;
   width: 100%;
   border: 2px solid #333;
   border-radius: 5px;
