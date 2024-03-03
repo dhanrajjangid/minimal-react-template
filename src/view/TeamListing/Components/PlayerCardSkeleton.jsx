@@ -6,7 +6,7 @@ import {
   PlayerDetails,
   ActionButtons,
   PlayerContent 
-} from "../StyledComponents";
+} from "@/view/PlayerListing/StyledComponents";
 
 const skeletonAnimationDuration = 1000; // Set the duration in milliseconds
 

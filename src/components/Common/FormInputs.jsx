@@ -11,6 +11,7 @@ export const TextField = styled.input`
 `;
 
 export const UnderlinedTextField = styled.input`
+box-sizing: border-box;
   padding: 10px;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -26,6 +27,8 @@ export const UnderlinedTextField = styled.input`
 
 // Dropdown component
 export const Dropdown = styled.select`
+box-sizing: border-box;
+
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -33,7 +36,6 @@ export const Dropdown = styled.select`
   appearance: none; /* Remove default arrow icon */
   background-color: #fff; /* Set background color */
   font-size: 16px; /* Adjust font size */
-  line-height: 1.5; /* Adjust line height */
   cursor: pointer; /* Show pointer cursor */
   outline: none; /* Remove default focus outline */
   -webkit-appearance: none; /* For older versions of iOS */
@@ -56,34 +58,30 @@ export const Label = styled.label`
 `;
 
 // Date Picker component
-export const DatePicker = styled.input`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-`;
 
 // Button component (Contained)
 export const ContainedButton = styled.button`
-  padding: 15px 20px;
-  border: none;
+box-sizing: border-box;
+  padding: 10px 20px;
   width: 100%;
   border-radius: 5px;
   background-color: #333;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border: 1px solid #333;
 
   &:hover {
     background-color: #fff;
     color: #333;
-    border: 2px solid #333;
   }
 `;
 
 // Button component (Outlined)
 export const OutlinedButton = styled.button`
-  padding: 15px 20px;
+box-sizing: border-box;
+
+  padding: 10px 20px;
   width: 100%;
   border: 2px solid #333;
   border-radius: 5px;
@@ -106,4 +104,11 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
   }
+`;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
 `;

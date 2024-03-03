@@ -1,3 +1,4 @@
+import { ContainedButton, OutlinedButton } from "@/components/Common/FormInputs";
 import {
   Card,
   ProfilePhoto,
@@ -5,8 +6,6 @@ import {
   PlayerName,
   PlayerPosition,
   ActiveStatus,
-  ButtonOutlined,
-  ButtonContained,
   ActionButtons,
   PlayerContent
 } from "../StyledComponents";
@@ -27,8 +26,8 @@ export const PlayerCard = ({ player }) => {
         </PlayerDetails>
       </PlayerContent>
       <ActionButtons>
-        <ButtonOutlined>Invite</ButtonOutlined>
-        <ButtonContained>Follow</ButtonContained>
+        <OutlinedButton>Invite</OutlinedButton>
+        <ContainedButton>Follow</ContainedButton>
       </ActionButtons>
     </Card>
   );

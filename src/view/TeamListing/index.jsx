@@ -2,14 +2,23 @@ import React, { useEffect, useState } from "react";
 import { CardContainer } from "./StyledComponents";
 import { usePlayerListing } from "./apiFunctions";
 import { useSelector } from "react-redux";
-import { PlayerCard } from "./Components/PlayerCard";
+import { TeamCard } from "./Components/TeamCard";
 import { selectLoadingState } from "@/redux/slices/loadingSlice";
 import PlayerCardSkeleton from "./Components/PlayerCardSkeleton";
-import { ContainedButton, Dropdown, DropdownContainer, Label, OutlinedButton } from "@/components/Common/FormInputs";
+import {
+  ContainedButton,
+  Dropdown,
+  DropdownContainer,
+  Label,
+  OutlinedButton,
+} from "@/components/Common/FormInputs";
 import { ButtonContainer } from "../Home/Components/StyledComponents";
 import UnderConstruction from "@/components/Common/UnderConstruction";
+import { CustomDatePicker } from "@/components/Common/DatePickers";
+import { useNavigate } from "react-router-dom";
 
 const TeamListing = () => {
+  const navigate = useNavigate()
   const user = useSelector((state) => state.auth.user);
   const playersList = useSelector((state) => state.listing.playersList);
   const isLoading = useSelector(selectLoadingState);
@@ -69,23 +78,42 @@ const TeamListing = () => {
   const distanceValues = [
     1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
   ];
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+  console.log("Selected Date:", selectedDate);
 
   return (
     <>
-    <UnderConstruction />
-    {/* <div style={{padding: '10px'}}>
-      <DropdownContainer>
-        <Label >Distance:</Label>
-        <Dropdown onChange={handleDistanceChange}>
-          {distanceValues.map((value) => (
-            <option key={value} value={value}>
-              {value / 1000} km
-            </option>
-          ))}
-        </Dropdown>
-      </DropdownContainer>
-      </div> */}
-      {/* {isLoading ? (
+      {/* <CustomDatePicker onChange={handleDateChange} /> */}
+
+      <div
+        style={{
+          padding: "10px",
+          display: "flex",
+          gap: "2rem",
+          alignItems: "end",
+          borderBottom: "1px solid #333"
+        }}
+      >
+        <div style={{ width: "50%" }}>
+          <DropdownContainer>
+            <Label>Distance:</Label>
+            <Dropdown safari={true} onChange={handleDistanceChange}>
+              {distanceValues.map((value) => (
+                <option key={value} value={value}>
+                  {value / 1000} km
+                </option>
+              ))}
+            </Dropdown>
+          </DropdownContainer>
+        </div>
+        <div style={{ width: "50%" }}>
+          <ContainedButton onClick={()=> navigate('/team-listing/create')}>+ Create Team</ContainedButton>
+        </div>
+      </div>
+      {2 < 1 ? (
         <CardContainer>
           <PlayerCardSkeleton />
           <PlayerCardSkeleton />
@@ -93,11 +121,11 @@ const TeamListing = () => {
         </CardContainer>
       ) : (
         <CardContainer>
-          {playersList?.map((player) => (
-            <PlayerCard key={player?.id} player={player} />
+          {[1, 2, 3, "playersList"]?.map((player) => (
+            <TeamCard key={player?.id} player={player} />
           ))}
         </CardContainer>
-      )} */}
+      )}
     </>
   );
 };

@@ -1,5 +1,3 @@
-// PlayerStyles.js
-
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
@@ -7,18 +5,8 @@ export const CardContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 1px;
-  margin-top: 15px;
-`;
-
-export const Dropdown = styled.select`
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  outline: none;
-  cursor: pointer;
+  padding: 10px;
+  margin-top: 20px;
 `;
 
 export const Card = styled.div`
@@ -28,7 +16,7 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
@@ -38,46 +26,46 @@ export const Card = styled.div`
   }
 `;
 
-
-
-export const PlayerContent = styled.div`
+export const TeamContent = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  gap: 30px
-
-`
+  gap: 30px;
+`;
 
 export const ProfilePhoto = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 10px solid #ECF0FC
+  border: 10px solid #ECF0FC;
 `;
 
-export const PlayerDetails = styled.div`
-  width: 100%
+export const TeamDetails = styled.div`
+  width: 100%;
 `;
 
-export const PlayerName = styled.h3`
+export const TeamName = styled.h3`
   margin: 5px 0;
 `;
 
-export const PlayerPosition = styled.p`
+export const AvailableSpots = styled.p`
   margin: 5px 0;
 `;
 
+export const Date = styled.p`
+  margin: 5px 0;
+`;
 
-export const ActiveStatus = styled.span`
-  color: ${({ active }) => (active ? "green" : "red")};
+export const Venue = styled.p`
+  margin: 5px 0;
 `;
 
 export const ActionButtons = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
-  width: 100%
-`
+  width: 100%;
+`;
 
 export const ButtonOutlined = styled.button`
   /* Your outlined button styles */
