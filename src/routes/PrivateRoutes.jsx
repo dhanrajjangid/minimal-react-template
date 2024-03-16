@@ -16,6 +16,7 @@ import ProductDetails from "@/view/Products/components/ProductDetails";
 import PlayerListing from "@/view/PlayerListing";
 import TeamListing from "@/view/TeamListing";
 import CreateTeam from "@/view/TeamListing/Components/CreateTeam";
+import TeamDetails from "@/view/TeamListing/Components/TeamDetails";
 
 const PrivateLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -106,6 +107,10 @@ const privateRoutes = [
       {
         path: "/team-listing",
         element: <TeamListing />,
+      },
+      {
+        path: "/team-details/:id",
+        element: <TeamDetails />,
       },
       {
         path: "/team-listing/create",

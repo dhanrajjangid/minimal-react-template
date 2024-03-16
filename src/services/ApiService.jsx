@@ -1,9 +1,9 @@
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import store from '@/redux/store';
-import { setLoading } from '@/redux/slices/loadingSlice'; // Import the setLoading action
+import axios from "axios";
+import { toast } from "react-toastify";
+import store from "@/redux/store";
+import { setLoading } from "@/redux/slices/loadingSlice"; // Import the setLoading action
 
-const API_BASE_URL = 'https://my-squad-git-main-dhanrajjangid.vercel.app'; // Your API base URL
+const API_BASE_URL = "https://my-squad-git-main-dhanrajjangid.vercel.app"; // Your API base URL
 // const API_BASE_URL = 'http://localhost:8000'; // Your API base URL
 
 const apiService = axios.create({
@@ -11,27 +11,14 @@ const apiService = axios.create({
   timeout: 10000, // Set timeout as per your requirement
 });
 
-
 // Function to handle API errors and display toast messages
 const handleApiError = (error) => {
   if (error.response) {
     const { status, data } = error.response;
-    if (status === 400) {
-      toast.error(data.message || 'Bad Request');
-    } else if (status === 401) {
-      toast.error(data.message || 'Unauthorized');
-      // Redirect to login or handle unauthorized access
-    } else if (status === 404) {
-      toast.error('Not Found');
-    } else {
-      toast.error(`Error: ${status}`);
-    }
+    toast.error(`${status}: ${data.message}` || "Bad Request");
   } else if (error.request) {
     // The request was made but no response was received
-    toast.error('No response received from server');
-  } else {
-    // Something happened in setting up the request that triggered an Error
-    toast.error('Error in request setup');
+    toast.error("No response received from server");
   }
 };
 
@@ -41,16 +28,16 @@ const makeHttpRequest = async (method, endpoint, requestData) => {
     store.dispatch(setLoading(true)); // Dispatch setLoading action to indicate loading has started
     let response;
     switch (method.toLowerCase()) {
-      case 'get':
+      case "get":
         response = await apiService.get(endpoint);
         break;
-      case 'post':
+      case "post":
         response = await apiService.post(endpoint, requestData);
         break;
-      case 'put':
+      case "put":
         response = await apiService.put(endpoint, requestData);
         break;
-      case 'delete':
+      case "delete":
         response = await apiService.delete(endpoint);
         break;
       // Add other HTTP methods as needed
@@ -68,22 +55,22 @@ const makeHttpRequest = async (method, endpoint, requestData) => {
 
 // API service function for GET requests
 export const getApiData = async (endpoint) => {
-  return makeHttpRequest('get', endpoint);
+  return makeHttpRequest("get", endpoint);
 };
 
 // API service function for POST requests
 export const postApiData = async (endpoint, requestData) => {
-  return makeHttpRequest('post', endpoint, requestData);
+  return makeHttpRequest("post", endpoint, requestData);
 };
 
 // API service function for PUT requests
 export const putApiData = async (endpoint, requestData) => {
-  return makeHttpRequest('put', endpoint, requestData);
+  return makeHttpRequest("put", endpoint, requestData);
 };
 
 // API service function for DELETE requests
 export const deleteApiData = async (endpoint) => {
-  return makeHttpRequest('delete', endpoint);
+  return makeHttpRequest("delete", endpoint);
 };
 
 export default apiService;
