@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import store from "@/redux/store";
 import { setLoading } from "@/redux/slices/loadingSlice"; // Import the setLoading action
 
-const API_BASE_URL = "https://my-squad-git-main-dhanrajjangid.vercel.app"; // Your API base URL
+const API_BASE_URL = "https://my-squad-two.vercel.app/"; // Your API base URL
 // const API_BASE_URL = 'http://localhost:8000'; // Your API base URL
 
 const apiService = axios.create({
