@@ -7,7 +7,7 @@ import ReactPixel from "react-facebook-pixel";
 
 function App() {
   useEffect(() => {
-    ReactPixel.init("526254704153620");
+    ReactPixel.init("5262547041536");
   }, []);
 
   return (
