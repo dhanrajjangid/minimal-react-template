@@ -138,6 +138,10 @@ const ProductCard = ({ product }) => {
         {/* Container for the cart icon */}
         <CartIconContainer>
           <Button>
+            <a href="https://cwdevzr.accelance.io/shop/bundle?locationId=LOC%23e857e7a7-4fde-4d2a-baad-114d6a85ff63">
+              Go to site
+            </a>
+
             <FaShoppingCart />
           </Button>
         </CartIconContainer>
