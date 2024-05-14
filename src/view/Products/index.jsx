@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import ProductCard from "@/view/Products/components/ProductCard";
-import ReactPixel from 'react-facebook-pixel';
+import ReactPixel from "react-facebook-pixel";
 
 const items = [
   {
@@ -74,7 +74,10 @@ const Container = styled.div`
 
 const Products = () => {
   useEffect(() => {
-    ReactPixel.track("Purchase", { currency: "USD", value: 30.0 });
+    ReactPixel.trackCustom("TEST84903", {
+      parameter1: "value1",
+      parameter2: "value2",
+    });
   }, []);
 
   return (
