@@ -72,8 +72,6 @@ const Container = styled.div`
 `;
 
 const Products = () => {
-
-
   return (
     <Container>
       {items.map((product) => (

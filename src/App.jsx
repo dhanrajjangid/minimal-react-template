@@ -6,10 +6,6 @@ import store from "@/redux/store";
 import ReactPixel from "react-facebook-pixel";
 
 function App() {
-  useEffect(() => {
-    ReactPixel.init("5262547041536");
-  }, []);
-
   return (
     <div>
       <Provider store={store}>
