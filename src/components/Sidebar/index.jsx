@@ -12,6 +12,7 @@ import {
   AiOutlineBook,
   AiOutlineUser as AiOutlineUserProfile,
   AiOutlineLogout,
+  AiOutlineSchedule
 } from "react-icons/ai";
 import ProfileImg from "@/assets/images/profile.jpg";
 import { useNavigate } from "react-router-dom";
@@ -62,6 +63,11 @@ const Sidebar = () => {
       title: "Products",
       path: "/products",
       icon: <AiOutlineShoppingCart  />,
+    },
+    {
+      title: "Schedules",
+      path: "/schedule-calender",
+      icon: <AiOutlineSchedule />,
     },
     {
       title: "Profile",
