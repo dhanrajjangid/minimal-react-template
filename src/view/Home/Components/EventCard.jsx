@@ -1,116 +1,93 @@
-// EventCard.js
 import React from "react";
 import styled from "styled-components";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { CiLocationOn } from "react-icons/ci";
 
 const Card = styled.div`
-  width: 100%;
-  max-width: 300px;
+  display: flex;
   border-radius: 10px;
+  padding: 1rem;
+  max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin: 0 auto;
-  margin-bottom: 1rem;
 `;
 
 const Image = styled.img`
-  width: 80px;
-  min-width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 0.5rem;
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  margin-right: 20px;
 `;
 
-const Content = styled.div`
-  padding: 16px;
-`;
-
-const UpperBox = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-`;
-
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 8px;
-  box-sizing: border-box;
-`;
-
-const EventType = styled.span`
-  font-size: 0.6rem;
-  font-weight: bold;
-  color: #777;
-`;
-
-const EventName = styled.h2`
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin: 0;
-`;
-
-const Details = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-`;
-
-const Detail = styled.div`
-  text-align: center;
-`;
-
-const Label = styled.div`
-  font-size: 0.8rem;
-  color: #777;
-`;
-
-const Value = styled.div`
+const Title = styled.h2`
   font-size: 1rem;
   font-weight: bold;
+  margin: 0;
+  color: #1f3b8f;
 `;
 
-const ViewEvent = styled.a`
-  display: block;
-  text-align: center;
-  padding: 0.8rem;
-  color: #fff;
-  text-decoration: none;
-  border-top: 1px solid #eee;
-  background-color: #132152 ;
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const PillsContainer = styled.div`
+  padding-top: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+`;
+
+const Pill = styled.div`
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  align-items: center;
+  background-color: #f0f4f7;
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-size: 0.7rem;
+  color: black;
+`;
+
+const Avatar = styled.img`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 5px;
 `;
 
 const EventCard = () => {
   return (
     <Card>
-      <Content>
-        <UpperBox>
-          <Image
-            src="https://images.pexels.com/photos/16731731/pexels-photo-16731731/free-photo-of-field-and-seats-of-a-football-stadium.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="Event"
-          />
-          <Title>
-            <EventType>EVENT</EventType>
-            <EventName>Test Yoga Class - Sunrise Serenity</EventName>
-          </Title>
-        </UpperBox>
-        <Details>
-          <Detail>
-            <Label>Date</Label>
-            <Value>17 Oct</Value>
-          </Detail>
-          <Detail>
-            <Label>Time</Label>
-            <Value>20:00</Value>
-          </Detail>
-          <Detail>
-            <Label>Invited</Label>
-            <Value>10</Value>
-          </Detail>
-        </Details>
-      </Content>
-      <ViewEvent href="#">View event</ViewEvent>
+      <Image
+        src="https://images.pexels.com/photos/16731731/pexels-photo-16731731/free-photo-of-field-and-seats-of-a-football-stadium.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        alt="Event"
+      />
+      <Info>
+        <Title>Bergen International Film Festival</Title>
+        <PillsContainer>
+          <Pill>
+            <AiOutlineClockCircle style={{ marginRight: "5px" }} />
+            <span style={{ fontWeight: "bold" }}>22 July 21</span> , 22:44 PM -
+            22:22
+          </Pill>
+          <div style={{ display: "flex", gap: 8 }}>
+            <Pill>
+              <Avatar
+                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
+                alt="Avatar"
+              />
+              <span style={{ fontWeight: "bold" }}>Dani Danials</span>
+            </Pill>
+            <Pill>
+              <CiLocationOn style={{ marginRight: "5px" }} />
+              <span style={{ fontWeight: "bold" }}>Munich</span>
+            </Pill>
+          </div>
+        </PillsContainer>
+      </Info>
     </Card>
   );
 };
