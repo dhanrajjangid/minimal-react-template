@@ -18,6 +18,7 @@ import TeamListing from "@/view/TeamListing";
 import CreateTeam from "@/view/TeamListing/Components/CreateTeam";
 import TeamDetails from "@/view/TeamListing/Components/TeamDetails";
 import ScheduleCalender from "@/view/ScheduleCalender";
+import UserProfile from "@/view/UserProfile";
 
 const PrivateLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -121,6 +122,10 @@ const privateRoutes = [
         path: "/schedule-calender",
         element: <ScheduleCalender />,
       },
+      {
+        path: "/user-profile",
+        element: <UserProfile />,
+      }
     ],
   },
 ];
