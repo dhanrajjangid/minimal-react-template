@@ -2,40 +2,42 @@ import React from "react";
 import styled from "styled-components";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { CiLocationOn } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled.div`
   display: flex;
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 5px;
   max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 `;
 
 const Image = styled.img`
   width: 100px;
   min-width: 100px;
   height: 100px;
-  border-radius: 8px;
-  margin-right: 20px;
+  border-radius: 5px 0 0 5px;
+  margin-right: 10px;
 `;
 
 const Title = styled.h2`
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   margin: 0;
-  color: #1f3b8f;
 `;
 
 const Info = styled.div`
   display: flex;
+  padding: 0.6rem 0.2rem;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const PillsContainer = styled.div`
   padding-top: 3px;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.4rem;
 `;
 
 const Pill = styled.div`
@@ -46,8 +48,8 @@ const Pill = styled.div`
   align-items: center;
   background-color: #f0f4f7;
   border-radius: 5px;
-  padding: 2px 5px;
-  font-size: 0.7rem;
+  padding: 1px 5px;
+  font-size: 0.65rem;
   color: black;
 `;
 
@@ -59,8 +61,9 @@ const Avatar = styled.img`
 `;
 
 const EventCard = () => {
+  const navigate = useNavigate();
   return (
-    <Card>
+    <Card onClick={() => navigate("/event-details")}>
       <Image
         src="https://images.pexels.com/photos/16731731/pexels-photo-16731731/free-photo-of-field-and-seats-of-a-football-stadium.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
         alt="Event"
