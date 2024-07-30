@@ -34,7 +34,7 @@ const Image = styled.img`
 `;
 
 const DetailsContainer = styled.div`
-  padding: 16px;
+  padding: 1rem 0;
 `;
 
 const AgentInfo = styled.div`
