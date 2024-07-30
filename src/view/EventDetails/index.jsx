@@ -138,7 +138,9 @@ const EventDetails = () => {
       <RentContainer>
         <Rent>$2,300 /month</Rent>
         <div style={{ flex: 1 }}>
-          <ContainedButton>Enroll</ContainedButton>
+          <ContainedButton border='none' color="black" backgroundColor="#CDF348">
+            Enroll
+          </ContainedButton>
         </div>
       </RentContainer>
     </Container>

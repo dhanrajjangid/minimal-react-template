@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 // TextField component
 export const TextField = styled.input`
@@ -10,10 +10,10 @@ export const TextField = styled.input`
   font-size: 1rem;
 `;
 
-export const UnderlinedTextField = styled.input.attrs(props => ({
-  type: props.type === "number" ? "number" : "text"
+export const UnderlinedTextField = styled.input.attrs((props) => ({
+  type: props.type === "number" ? "number" : "text",
 }))`
-box-sizing: border-box;
+  box-sizing: border-box;
   padding: 10px;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -29,7 +29,7 @@ box-sizing: border-box;
 
 // Dropdown component
 export const Dropdown = styled.select`
-box-sizing: border-box;
+  box-sizing: border-box;
 
   padding: 10px;
   border: 1px solid #ccc;
@@ -63,15 +63,19 @@ export const Label = styled.label`
 
 // Button component (Contained)
 export const ContainedButton = styled.button`
-box-sizing: border-box;
+  box-sizing: border-box;
   padding: 15px 20px;
   width: 100%;
   border-radius: 5px;
-  background-color: #333;
-  color: #fff;
+  background-color: ${(props) =>
+    props?.backgroundColor ? props?.backgroundColor : "#333"};
+  color: ${(props) =>
+    props?.color ? props?.color : "#fff"};
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 1px solid #333;
+  border: 
+  ${(props) =>
+    props?.border ? props?.border : "1px solid #333"};
 
   &:hover {
     background-color: #fff;
@@ -81,7 +85,7 @@ box-sizing: border-box;
 
 // Button component (Outlined)
 export const OutlinedButton = styled.button`
-box-sizing: border-box;
+  box-sizing: border-box;
 
   padding: 15px 20px;
   width: 100%;
