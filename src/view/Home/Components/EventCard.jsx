@@ -6,38 +6,40 @@ import { useNavigate } from "react-router-dom";
 
 const Card = styled.div`
   display: flex;
-  border-radius: 5px;
+  box-sizing: border-box;
   max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
+  @media (max-width: 420px) {
+    width: 100%
+  }
 `;
 
 const Image = styled.img`
-  width: 100px;
-  min-width: 100px;
-  height: 100px;
-  border-radius: 5px 0 0 5px;
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  border-radius: 30%;
   margin-right: 10px;
+  object-fit: cover;
 `;
 
 const Title = styled.h2`
   font-size: 0.8rem;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0;
 `;
 
 const Info = styled.div`
   display: flex;
-  padding: 0.6rem 0.2rem;
+  padding: 0 0.2rem;
   flex-direction: column;
-  justify-content: space-between;
 `;
 
 const PillsContainer = styled.div`
   padding-top: 3px;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.2rem;
 `;
 
 const Pill = styled.div`
@@ -46,12 +48,21 @@ const Pill = styled.div`
   max-width: 100%;
   overflow: hidden;
   align-items: center;
-  background-color: #f0f4f7;
-  border-radius: 5px;
-  padding: 1px 5px;
+  font-size: 0.65rem;
+`;
+
+const Location = styled.div`
+  display: flex;
+  background-color: #CDF348;
+  border-radius: 1rem;
+  padding: 0 0.3rem;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  align-items: center;
   font-size: 0.65rem;
   color: black;
-`;
+`
 
 const Avatar = styled.img`
   width: 15px;
@@ -65,11 +76,11 @@ const EventCard = () => {
   return (
     <Card onClick={() => navigate("/event-details")}>
       <Image
-        src="https://images.pexels.com/photos/16731731/pexels-photo-16731731/free-photo-of-field-and-seats-of-a-football-stadium.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        src="https://images.pexels.com/photos/5067824/pexels-photo-5067824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt="Event"
       />
       <Info>
-        <Title>Bergen International Film Festival</Title>
+        <Title>Leonel Messi</Title>
         <PillsContainer>
           <Pill>
             <AiOutlineClockCircle style={{ marginRight: "5px" }} />
@@ -84,10 +95,10 @@ const EventCard = () => {
               />
               <span style={{ fontWeight: "bold" }}>Dani Danials</span>
             </Pill>
-            <Pill>
+            <Location>
               <CiLocationOn style={{ marginRight: "5px" }} />
               <span style={{ fontWeight: "bold" }}>Munich</span>
-            </Pill>
+            </Location>
           </div>
         </PillsContainer>
       </Info>
