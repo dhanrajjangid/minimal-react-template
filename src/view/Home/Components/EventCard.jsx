@@ -15,16 +15,16 @@ const Card = styled.div`
 `;
 
 const Image = styled.img`
-  width: 60px;
-  min-width: 60px;
-  height: 60px;
+  width: 80px;
+  min-width: 80px;
+  height: 80px;
   border-radius: 30%;
   margin-right: 10px;
   object-fit: cover;
 `;
 
 const Title = styled.h2`
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
 `;
@@ -48,7 +48,7 @@ const Pill = styled.div`
   max-width: 100%;
   overflow: hidden;
   align-items: center;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
 `;
 
 const Location = styled.div`
