@@ -9,7 +9,7 @@ const Card = styled.div`
   box-sizing: border-box;
   max-width: 600px;
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 420px) {
