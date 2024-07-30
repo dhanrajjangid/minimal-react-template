@@ -9,8 +9,11 @@ const Card = styled.div`
   box-sizing: border-box;
   max-width: 600px;
   margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   @media (max-width: 420px) {
-    width: 100%
+    width: 100%;
   }
 `;
 
@@ -53,7 +56,7 @@ const Pill = styled.div`
 
 const Location = styled.div`
   display: flex;
-  background-color: #CDF348;
+  background-color: #cdf348;
   border-radius: 1rem;
   padding: 0.1rem 0.4rem;
   width: fit-content;
@@ -62,7 +65,7 @@ const Location = styled.div`
   align-items: center;
   font-size: 0.65rem;
   color: black;
-`
+`;
 
 const Avatar = styled.img`
   width: 15px;
