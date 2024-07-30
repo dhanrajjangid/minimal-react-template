@@ -55,7 +55,7 @@ const Location = styled.div`
   display: flex;
   background-color: #CDF348;
   border-radius: 1rem;
-  padding: 0 0.3rem;
+  padding: 0.1rem 0.4rem;
   width: fit-content;
   max-width: 100%;
   overflow: hidden;
