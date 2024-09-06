@@ -1,111 +1,104 @@
 import React from "react";
 import styled from "styled-components";
-import { AiOutlineClockCircle } from "react-icons/ai";
-import { CiLocationOn } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
-const Card = styled.div`
-  display: flex;
-  box-sizing: border-box;
-  max-width: 600px;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  @media (max-width: 420px) {
-    width: 100%;
-  }
-`;
-
-const Image = styled.img`
-  width: 80px;
-  min-width: 80px;
-  height: 80px;
-  border-radius: 30%;
-  margin-right: 10px;
-  object-fit: cover;
-`;
-
-const Title = styled.h2`
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0;
-`;
-
-const Info = styled.div`
-  display: flex;
-  padding: 0 0.2rem;
-  flex-direction: column;
-`;
-
-const PillsContainer = styled.div`
-  padding-top: 3px;
+const CardContainer = styled.div`
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  background-image: url("https://images.pexels.com/photos/5928266/pexels-photo-5928266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  justify-content: flex-end;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  color: white;
 `;
 
-const Pill = styled.div`
-  display: flex;
-  width: fit-content;
-  max-width: 100%;
-  overflow: hidden;
-  align-items: center;
-  font-size: 0.7rem;
+const Overlay = styled.div`
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 20px;
+  padding: 8px;
 `;
 
-const Location = styled.div`
+const ClassInfo = styled.div`
   display: flex;
-  background-color: #cdf348;
-  border-radius: 1rem;
-  padding: 0.1rem 0.4rem;
-  width: fit-content;
-  max-width: 100%;
-  overflow: hidden;
   align-items: center;
-  font-size: 0.65rem;
-  color: black;
+  margin-bottom: 10px;
 `;
 
 const Avatar = styled.img`
-  width: 15px;
-  height: 15px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 10px;
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ClassName = styled.p`
+  font-size: 1rem;
+  margin: 0;
+  color: white;
+`;
+
+const TrainerArea = styled.p`
+  font-size: 14px;
+  margin: 0;
+  color: white;
+  opacity: 0.8;
+`;
+
+const Price = styled.p`
+  font-size: 16px;
+  margin: 0;
+  background-color: #fe6f32;
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
+
+const RatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+`;
+
+const RatingText = styled.span`
+  font-size: 16px;
+  margin-left: 5px;
 `;
 
 const EventCard = () => {
-  const navigate = useNavigate();
   return (
-    <Card onClick={() => navigate("/event-details")}>
-      <Image
-        src="https://images.pexels.com/photos/5067824/pexels-photo-5067824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt="Event"
-      />
-      <Info>
-        <Title>Leonel Messi</Title>
-        <PillsContainer>
-          <Pill>
-            <AiOutlineClockCircle style={{ marginRight: "5px" }} />
-            <span style={{ fontWeight: "bold" }}>22 July 21</span> , 22:44 PM -
-            22:22
-          </Pill>
-          <div style={{ display: "flex", gap: 8 }}>
-            <Pill>
-              <Avatar
-                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
-                alt="Avatar"
-              />
-              <span style={{ fontWeight: "bold" }}>Dani Danials</span>
-            </Pill>
-            <Location>
-              <CiLocationOn style={{ marginRight: "5px" }} />
-              <span style={{ fontWeight: "bold" }}>Munich</span>
-            </Location>
+    <CardContainer>
+      <Overlay>
+        <ClassInfo>
+          <Avatar src="https://randomuser.me/api/portraits/women/68.jpg" alt="Trainer" />
+          <TextContainer>
+            <ClassName>Yoga with Alana</ClassName>
+            <TrainerArea>San Francisco, CA</TrainerArea>
+          </TextContainer>
+        </ClassInfo>
+         <div style={{display: "flex", justifyContent: "space-between"}}>
+        <RatingContainer>
+          <FaStar color="#FFD700" />
+          <FaStar color="#FFD700" />
+          <FaStar color="#FFD700" />
+          <FaStar color="#FFD700" />
+          <RatingText>4.9</RatingText>
+        </RatingContainer>
+          <Price>Book $25/hr</Price>
           </div>
-        </PillsContainer>
-      </Info>
-    </Card>
+      </Overlay>
+    </CardContainer>
   );
 };
 
