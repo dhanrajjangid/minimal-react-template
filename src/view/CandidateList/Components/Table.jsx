@@ -1,0 +1,66 @@
+// Table.js
+import React, { useState } from 'react';
+import { TableContainer, TableElement, Thead, Th, Td, EditButton } from './StyledComponents';
+import FormModal from './FormModal';
+
+const Table = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  // Example data (replace this with actual data)
+  const users = [
+    { name: "Adam Trantow", company: "Mohr, Langworth and Hills", role: "UI Designer", deposit: 1000, remainingAmount: 500, status: "Active" },
+    { name: "Angel Rolfson-Kulas", company: "Koch and Sons", role: "UI Designer", deposit: 1500, remainingAmount: 300, status: "Active" },
+    { name: "Betty Hammes", company: "Waelchi – VonRueden", role: "UI Designer", deposit: 2000, remainingAmount: 1000, status: "Active" },
+    { name: "Billy Braun", company: "White, Cassin and Goldner", role: "UI Designer", deposit: 1200, remainingAmount: 600, status: "Banned" },
+    { name: "Billy Stoltenberg", company: "Medhurst, Moore and Franey", role: "Leader", deposit: 2500, remainingAmount: 800, status: "Banned" },
+  ];
+
+  const openModal = (user) => {
+    setSelectedUser(user);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedUser(null);
+  };
+
+  return (
+    <TableContainer>
+      <TableElement>
+        <Thead>
+          <tr>
+            <Th>S.No</Th>
+            <Th>Name</Th>
+            <Th>Company</Th>
+            <Th>Role</Th>
+            <Th>Deposit</Th>
+            <Th>Remaining Amount</Th>
+            <Th>Status</Th>
+            <Th>Edit</Th>
+          </tr>
+        </Thead>
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={index}>
+              <Td>{index + 1}</Td>
+              <Td>{user.name}</Td>
+              <Td>{user.company}</Td>
+              <Td>{user.role}</Td>
+              <Td>${user.deposit}</Td>
+              <Td>${user.remainingAmount}</Td>
+              <Td>{user.status}</Td>
+              <Td>
+                <EditButton onClick={() => openModal(user)}>Edit</EditButton>
+              </Td>
+            </tr>
+          ))}
+        </tbody>
+      </TableElement>
+      {isModalOpen && <FormModal user={selectedUser} closeModal={closeModal} />}
+    </TableContainer>
+  );
+};
+
+export default Table;

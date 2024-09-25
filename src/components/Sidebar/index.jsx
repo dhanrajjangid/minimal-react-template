@@ -49,26 +49,26 @@ const Sidebar = () => {
       path: "/home",
       icon: <AiOutlineHome />,
     },
-    {
-      title: "Find Teams",
-      path: "/team-listing",
-      icon: <AiOutlineTeam  />,
-    },
-    {
-      title: "Find Players",
-      path: "/player-listing",
-      icon: <AiOutlineScan />,
-    },
-    {
-      title: "Products",
-      path: "/products",
-      icon: <AiOutlineShoppingCart  />,
-    },
-    {
-      title: "Schedules",
-      path: "/schedule-calender",
-      icon: <AiOutlineSchedule />,
-    },
+    // {
+    //   title: "Find Teams",
+    //   path: "/team-listing",
+    //   icon: <AiOutlineTeam  />,
+    // },
+    // {
+    //   title: "Find Players",
+    //   path: "/player-listing",
+    //   icon: <AiOutlineScan />,
+    // },
+    // {
+    //   title: "Products",
+    //   path: "/products",
+    //   icon: <AiOutlineShoppingCart  />,
+    // },
+    // {
+    //   title: "Schedules",
+    //   path: "/schedule-calender",
+    //   icon: <AiOutlineSchedule />,
+    // },
     {
       title: "Profile",
       path: "/profile",
@@ -84,11 +84,11 @@ const Sidebar = () => {
     //   path: "/cart",
     //   icon: <AiOutlineShoppingCart />,
     // },
-    // {
-    //   title: "Create User",
-    //   path: "/create-user",
-    //   icon: <AiOutlineUserAdd />,
-    // },
+    {
+      title: "Add Candidate",
+      path: "/create-user",
+      icon: <AiOutlineUserAdd />,
+    },
     
     // {
     //   title: "Courses",
