@@ -1,7 +1,14 @@
 // Table.js
-import React, { useState } from 'react';
-import { TableContainer, TableElement, Thead, Th, Td, EditButton } from './StyledComponents';
-import FormModal from './FormModal';
+import React, { useState } from "react";
+import {
+  TableContainer,
+  TableElement,
+  Thead,
+  Th,
+  Td,
+  EditButton,
+} from "./StyledComponents";
+import FormModal from "./FormModal";
 
 const Table = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,11 +16,51 @@ const Table = () => {
 
   // Example data (replace this with actual data)
   const users = [
-    { name: "Adam Trantow",date:'22-09-2024', company: "Revolute", role: "UI Designer", deposit: 1000, remainingAmount: 500, status: "Active" },
-    { name: "Angel Rolfson-Kulas",date:'22-09-2024', company: "Freshprints", role: "UI Designer", deposit: 1500, remainingAmount: 300, status: "Active" },
-    { name: "Betty Hammes",date:'22-09-2024', company: "Freshprints", role: "UI Designer", deposit: 2000, remainingAmount: 1000, status: "Active" },
-    { name: "Billy Braun",date:'22-09-2024', company: "Freshprints", role: "UI Designer", deposit: 1200, remainingAmount: 600, status: "Banned" },
-    { name: "Billy Stoltenberg",date:'22-09-2024', company: "Freshprints", role: "Leader", deposit: 2500, remainingAmount: 800, status: "Banned" },
+    {
+      name: "Adam Trantow",
+      date: "22-09-2024",
+      company: "Revolute",
+      role: "UI Designer",
+      deposit: 1000,
+      remainingAmount: 500,
+      status: "Active",
+    },
+    {
+      name: "Angel Rolfson-Kulas",
+      date: "22-09-2024",
+      company: "Freshprints",
+      role: "UI Designer",
+      deposit: 1500,
+      remainingAmount: 300,
+      status: "Active",
+    },
+    {
+      name: "Betty Hammes",
+      date: "22-09-2024",
+      company: "Freshprints",
+      role: "UI Designer",
+      deposit: 2000,
+      remainingAmount: 1000,
+      status: "Active",
+    },
+    {
+      name: "Billy Braun",
+      date: "22-09-2024",
+      company: "Freshprints",
+      role: "UI Designer",
+      deposit: 1200,
+      remainingAmount: 600,
+      status: "Banned",
+    },
+    {
+      name: "Billy Stoltenberg",
+      date: "22-09-2024",
+      company: "Freshprints",
+      role: "Leader",
+      deposit: 2500,
+      remainingAmount: 800,
+      status: "Banned",
+    },
   ];
 
   const openModal = (user) => {
@@ -50,8 +97,8 @@ const Table = () => {
               <Td>{user.date}</Td>
               <Td>{user.company}</Td>
               <Td>{user.role}</Td>
-              <Td>${user.deposit}</Td>
-              <Td>${user.remainingAmount}</Td>
+              <Td>₹{user.deposit}</Td>
+              <Td>₹{user.remainingAmount}</Td>
               <Td>{user.status}</Td>
               <Td>
                 <EditButton onClick={() => openModal(user)}>Edit</EditButton>
