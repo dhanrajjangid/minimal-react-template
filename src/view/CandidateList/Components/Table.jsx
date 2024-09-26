@@ -9,11 +9,11 @@ const Table = () => {
 
   // Example data (replace this with actual data)
   const users = [
-    { name: "Adam Trantow", company: "Mohr, Langworth and Hills", role: "UI Designer", deposit: 1000, remainingAmount: 500, status: "Active" },
-    { name: "Angel Rolfson-Kulas", company: "Koch and Sons", role: "UI Designer", deposit: 1500, remainingAmount: 300, status: "Active" },
-    { name: "Betty Hammes", company: "Waelchi – VonRueden", role: "UI Designer", deposit: 2000, remainingAmount: 1000, status: "Active" },
-    { name: "Billy Braun", company: "White, Cassin and Goldner", role: "UI Designer", deposit: 1200, remainingAmount: 600, status: "Banned" },
-    { name: "Billy Stoltenberg", company: "Medhurst, Moore and Franey", role: "Leader", deposit: 2500, remainingAmount: 800, status: "Banned" },
+    { name: "Adam Trantow",date:'22-09-2024', company: "Revolute", role: "UI Designer", deposit: 1000, remainingAmount: 500, status: "Active" },
+    { name: "Angel Rolfson-Kulas",date:'22-09-2024', company: "Freshprints", role: "UI Designer", deposit: 1500, remainingAmount: 300, status: "Active" },
+    { name: "Betty Hammes",date:'22-09-2024', company: "Freshprints", role: "UI Designer", deposit: 2000, remainingAmount: 1000, status: "Active" },
+    { name: "Billy Braun",date:'22-09-2024', company: "Freshprints", role: "UI Designer", deposit: 1200, remainingAmount: 600, status: "Banned" },
+    { name: "Billy Stoltenberg",date:'22-09-2024', company: "Freshprints", role: "Leader", deposit: 2500, remainingAmount: 800, status: "Banned" },
   ];
 
   const openModal = (user) => {
@@ -33,6 +33,7 @@ const Table = () => {
           <tr>
             <Th>S.No</Th>
             <Th>Name</Th>
+            <Th>Date</Th>
             <Th>Company</Th>
             <Th>Role</Th>
             <Th>Deposit</Th>
@@ -46,6 +47,7 @@ const Table = () => {
             <tr key={index}>
               <Td>{index + 1}</Td>
               <Td>{user.name}</Td>
+              <Td>{user.date}</Td>
               <Td>{user.company}</Td>
               <Td>{user.role}</Td>
               <Td>${user.deposit}</Td>
