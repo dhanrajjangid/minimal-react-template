@@ -1,46 +1,4 @@
-import styled from 'styled-components';
-
-// Table styles
-export const TableContainer = styled.div`
-  width: 100%;
-  padding: 20px;
-  background-color: #f9fafb;
-  border-radius: 10px;
-`;
-
-export const TableElement = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-`;
-
-export const Thead = styled.thead`
-  background-color: #f1f5f9;
-`;
-
-export const Th = styled.th`
-  padding: 10px;
-  font-weight: bold;
-  color: #6b7280;
-`;
-
-export const Td = styled.td`
-  padding: 10px;
-  border-bottom: 1px solid #e5e7eb;
-`;
-
-export const EditButton = styled.button`
-  padding: 5px 10px;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #2563eb;
-  }
-`;
+import styled from "styled-components";
 
 // Modal styles
 export const Overlay = styled.div`
@@ -53,6 +11,17 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const FormModalContainer = styled.div`
+  background-color: white;
+  padding: 20px;
+  height: 70vh;
+  overflow: auto;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 export const ModalContainer = styled.div`
@@ -115,4 +84,66 @@ export const SaveButton = styled.button`
   &:hover {
     background-color: #2563eb;
   }
+`;
+
+// Desktop View
+export const TableContainer = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  @media (max-width: 768px) {
+    display: none; // Hide table on mobile
+  }
+`;
+
+export const TableElement = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+export const Thead = styled.thead`
+  background-color: #f5f5f5;
+`;
+
+export const Th = styled.th`
+  padding: 8px;
+  text-align: left;
+`;
+
+export const Td = styled.td`
+  padding: 8px;
+`;
+
+// Edit Button styling
+export const EditButton = styled.button`
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+
+// Mobile View (Card view)
+export const MobileView = styled.div`
+  display: none;
+  box-sizing: border-box;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const MobileCard = styled.div`
+  background-color: #F5F5F5;
+  box-sizing: border-box;
+  min-width: 350px;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+`;
+
+export const MobileCardContent = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 `;

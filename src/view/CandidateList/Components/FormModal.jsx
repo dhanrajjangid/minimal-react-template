@@ -2,15 +2,17 @@
 import React, { useState } from "react";
 import {
   Overlay,
-  ModalContainer,
+  FormModalContainer,
   CloseButton,
   FormField,
   Label,
-  Input,
   Select,
-  SaveButton,
 } from "./StyledComponents";
-import { ContainedButton, OutlinedButton, TextField } from "@/components/Common/FormInputs";
+import {
+  ContainedButton,
+  OutlinedButton,
+  TextField,
+} from "@/components/Common/FormInputs";
 
 const FormModal = ({ user, closeModal }) => {
   const [formData, setFormData] = useState({
@@ -34,7 +36,7 @@ const FormModal = ({ user, closeModal }) => {
 
   return (
     <Overlay>
-      <ModalContainer>
+      <FormModalContainer>
         <CloseButton onClick={closeModal}>×</CloseButton>
         <form>
           <FormField>
@@ -109,12 +111,26 @@ const FormModal = ({ user, closeModal }) => {
               </option>
             </Select>
           </FormField>
-          <div style={{display: 'flex', gap: 5}}>
-          <OutlinedButton onClick={closeModal}>Cancel</OutlinedButton>
-          <ContainedButton onClick={handleSave}>Save</ContainedButton>
+          <div style={{ display: "flex", gap: 5 }}>
+            <OutlinedButton
+              padding="15px 10px"
+              backgroundColor="#BD9BC7"
+              border="1px solid #BD9BC7"
+              onClick={closeModal}
+            >
+              Cancel
+            </OutlinedButton>
+            <ContainedButton
+              padding="15px 10px"
+              backgroundColor="#BD9BC7"
+              border="1px solid #BD9BC7"
+              onClick={handleSave}
+            >
+              Save
+            </ContainedButton>
           </div>
         </form>
-      </ModalContainer>
+      </FormModalContainer>
     </Overlay>
   );
 };

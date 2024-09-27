@@ -66,7 +66,7 @@ export const Label = styled.label`
 // Button component (Contained)
 export const ContainedButton = styled.button`
   box-sizing: border-box;
-  padding: 15px 20px;
+  padding: ${(props) => (props?.padding ? props?.padding : "15px 20px")};
   width: 100%;
   border-radius: 5px;
   background-color: ${(props) =>
@@ -75,7 +75,6 @@ export const ContainedButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
   border: ${(props) => (props?.border ? props?.border : "1px solid #333")};
-
   &:hover {
     background-color: #fff;
     color: #333;
@@ -86,9 +85,9 @@ export const ContainedButton = styled.button`
 export const OutlinedButton = styled.button`
   box-sizing: border-box;
 
-  padding: 15px 20px;
+  padding: ${(props) => (props?.padding ? props?.padding : "15px 20px")};
   width: 100%;
-  border: 2px solid #333;
+  border: ${(props) => (props?.border ? props?.border : "2px solid #333")};
   border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
