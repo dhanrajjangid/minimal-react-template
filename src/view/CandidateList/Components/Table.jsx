@@ -9,6 +9,7 @@ import {
   MobileView,
   MobileCard,
   MobileCardContent,
+  CompanyPill,
 } from "./StyledComponents"; // Update styled components as well
 import FormModal from "./FormModal";
 import { ContainedButton } from "@/components/Common/FormInputs";
@@ -119,13 +120,17 @@ const Table = () => {
         {users.map((user, index) => (
           <MobileCard key={index}>
             <MobileCardContent>
-              <strong>Name:</strong> {user.name}
+              <strong style={{ fontSize: "18px" }}>{user.name}</strong>{" "}
+              <CompanyPill
+                backgroundColor={
+                  user.company === "Revolute" ? "#4749BC" : "#BF3131"
+                }
+              >
+                {user.company}
+              </CompanyPill>
             </MobileCardContent>
             <MobileCardContent>
               <strong>Date:</strong> {user.date}
-            </MobileCardContent>
-            <MobileCardContent>
-              <strong>Company:</strong> {user.company}
             </MobileCardContent>
             <MobileCardContent>
               <strong>Role:</strong> {user.role}

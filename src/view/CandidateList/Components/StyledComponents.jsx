@@ -133,7 +133,7 @@ export const MobileView = styled.div`
 `;
 
 export const MobileCard = styled.div`
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   box-sizing: border-box;
   min-width: 350px;
   width: 100%;
@@ -145,5 +145,14 @@ export const MobileCard = styled.div`
 export const MobileCardContent = styled.div`
   margin-bottom: 10px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+`;
+
+export const CompanyPill = styled.div`
+  border-radius: 50px;
+  background-color: ${(props) =>
+    props?.backgroundColor ? props?.backgroundColor : "#4749BC"};
+  color: #fff;
+  padding: 2px 10px;
 `;
