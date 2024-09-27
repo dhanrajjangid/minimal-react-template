@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TableContainer,
   TableElement,
@@ -13,59 +13,19 @@ import {
 } from "./StyledComponents"; // Update styled components as well
 import FormModal from "./FormModal";
 import { ContainedButton } from "@/components/Common/FormInputs";
+import { useSelector } from "react-redux";
+import { useCandidate } from "../apiFunctions";
+import dayjs from "dayjs";
 
 const Table = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const users = useSelector((state) => state.candidate.candidateList);
+  const { getCandidateList } = useCandidate();
 
-  // Example data (replace this with actual data)
-  const users = [
-    {
-      name: "Adam Trantow",
-      date: "22-09-2024",
-      company: "Revolute",
-      role: "UI Designer",
-      deposit: 1000,
-      remainingAmount: 500,
-      status: "Active",
-    },
-    {
-      name: "Angel Rolfson-Kulas",
-      date: "22-09-2024",
-      company: "Freshprints",
-      role: "UI Designer",
-      deposit: 1500,
-      remainingAmount: 300,
-      status: "Active",
-    },
-    {
-      name: "Betty Hammes",
-      date: "22-09-2024",
-      company: "Freshprints",
-      role: "UI Designer",
-      deposit: 2000,
-      remainingAmount: 1000,
-      status: "Active",
-    },
-    {
-      name: "Billy Braun",
-      date: "22-09-2024",
-      company: "Freshprints",
-      role: "UI Designer",
-      deposit: 1200,
-      remainingAmount: 600,
-      status: "Banned",
-    },
-    {
-      name: "Billy Stoltenberg",
-      date: "22-09-2024",
-      company: "Freshprints",
-      role: "Leader",
-      deposit: 2500,
-      remainingAmount: 800,
-      status: "Banned",
-    },
-  ];
+  useEffect(() => {
+    getCandidateList();
+  }, []);
 
   const openModal = (user) => {
     setSelectedUser(user);
@@ -77,6 +37,9 @@ const Table = () => {
     setSelectedUser(null);
   };
 
+  const formattedDate = (date) => {
+    return dayjs(date)?.locale("en")?.format("DD MMM, YYYY");
+  };
   return (
     <>
       {/* Desktop View */}
@@ -96,7 +59,7 @@ const Table = () => {
             </tr>
           </Thead>
           <tbody>
-            {users.map((user, index) => (
+            {users?.map((user, index) => (
               <tr key={index}>
                 <Td>{index + 1}</Td>
                 <Td>{user.name}</Td>
@@ -117,20 +80,20 @@ const Table = () => {
 
       {/* Mobile View */}
       <MobileView>
-        {users.map((user, index) => (
+        {users?.map((user, index) => (
           <MobileCard key={index}>
             <MobileCardContent>
               <strong style={{ fontSize: "18px" }}>{user.name}</strong>{" "}
               <CompanyPill
                 backgroundColor={
-                  user.company === "Revolute" ? "#4749BC" : "#BF3131"
+                  user.company === "Revolut" ? "#4749BC" : "#BF3131"
                 }
               >
                 {user.company}
               </CompanyPill>
             </MobileCardContent>
             <MobileCardContent>
-              <strong>Date:</strong> {user.date}
+              <strong>Date:</strong> {formattedDate(user?.date)}
             </MobileCardContent>
             <MobileCardContent>
               <strong>Role:</strong> {user.role}
@@ -139,15 +102,15 @@ const Table = () => {
               <strong>Deposit:</strong> ₹{user.deposit}
             </MobileCardContent>
             <MobileCardContent>
-              <strong>Remaining Amount:</strong> ₹{user.remainingAmount}
+              <strong>Total Amount:</strong> ₹{user.totalAmount}
             </MobileCardContent>
             <MobileCardContent>
               <strong>Status:</strong> {user.status}
             </MobileCardContent>
             <ContainedButton
               padding="10px 5px"
-              backgroundColor="#BD9BC7"
-              border="1px solid #BD9BC7"
+              backgroundColor="#4749BC"
+              border="1px solid #4749BC"
               onClick={() => openModal(user)}
             >
               Edit

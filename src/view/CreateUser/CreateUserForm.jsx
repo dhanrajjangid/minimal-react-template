@@ -7,23 +7,34 @@ import {
 } from "@/view/CandidateList/Components/StyledComponents";
 import { ContainedButton, TextField } from "@/components/Common/FormInputs";
 import { CustomDatePicker } from "@/components/Common/DatePickers";
+import { useCandidate } from "../CandidateList/apiFunctions";
 
 const CreateUserForm = () => {
+  const { createCandidateApi } = useCandidate();
   const [formData, setFormData] = useState({
     name: "",
     company: "",
     role: "",
     deposit: "",
     totalAmount: "",
-    status: "",
+    date: "",
   });
 
   const handleChange = (e) => {
+    console.log(e.target.name, "::::::", e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSave = () => {
-    closeModal();
+  const handleSave = async (e) => {
+    e.preventDefault();
+    await createCandidateApi(formData);
+  };
+
+  const handleDateChange = (value) => {
+    setFormData({
+      ...formData,
+      date: value,
+    });
   };
 
   return (
@@ -35,7 +46,10 @@ const CreateUserForm = () => {
         justifyContent: "center",
       }}
     >
-      <form style={{ minWidth: "350px", justifyContent: "center" }}>
+      <form
+        style={{ minWidth: "350px", justifyContent: "center" }}
+        onSubmit={handleSave}
+      >
         <FormField>
           <Label>Name</Label>
           <TextField
@@ -52,6 +66,8 @@ const CreateUserForm = () => {
             value={formData.company}
             onChange={handleChange}
           >
+            <option value=""></option>
+
             <option value="Freshprints">Freshprints</option>
             <option value="Revolut">Revolut</option>
           </Select>
@@ -60,6 +76,8 @@ const CreateUserForm = () => {
         <FormField>
           <Label>Role</Label>
           <Select name="role" value={formData.role} onChange={handleChange}>
+            <option value=""></option>
+
             <option value="Operations Manager">Operations Manager</option>
             <option value="Operations Associate">Operations Associate</option>
             <option value="Inside Sales Associate">
@@ -89,11 +107,16 @@ const CreateUserForm = () => {
         </FormField>
         <FormField>
           <Label>Date</Label>
-          <CustomDatePicker dateFormat="dd/MM/yyyy" />
+          <CustomDatePicker
+            onChange={handleDateChange}
+            dateFormat="dd/MM/yyyy"
+          />
         </FormField>
 
         <div style={{ display: "flex", gap: 5 }}>
-          <ContainedButton onClick={handleSave}>Save</ContainedButton>
+          <ContainedButton type="button" onClick={handleSave}>
+            Save
+          </ContainedButton>
         </div>
       </form>
     </div>
