@@ -41,15 +41,15 @@ const DatePickerWrapper = styled.div`
   .custom-datepicker-input {
     box-sizing: border-box;
     width: calc(100% - 2px);
-    padding: 5px;
+    padding: 10px;
     font-size: 1rem;
     border-radius: 4px;
     border:none;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ccc;
   }
 `;
 
-export const CustomDatePicker = ({onChange }) => {
+export const CustomDatePicker = ({onChange, dateFormat, showTimeSelect}) => {
   const [startDate, setStartDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -63,8 +63,8 @@ export const CustomDatePicker = ({onChange }) => {
       <DatePicker
         selected={startDate}
         onChange={handleDateChange}
-        dateFormat="dd/MM/yyyy h:mm aa"
-        showTimeSelect
+        dateFormat={dateFormat || "dd/MM/yyyy h:mm aa"}
+        showTimeSelect={showTimeSelect}
         timeIntervals={15}
         className="custom-datepicker-input"
       />

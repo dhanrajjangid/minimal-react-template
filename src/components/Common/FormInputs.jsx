@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 // TextField component
-export const TextField = styled.input`
+export const TextField = styled.input.attrs((props) => ({
+  type: props.type === "number" ? "number" : "text",
+}))`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -69,13 +71,10 @@ export const ContainedButton = styled.button`
   border-radius: 5px;
   background-color: ${(props) =>
     props?.backgroundColor ? props?.backgroundColor : "#333"};
-  color: ${(props) =>
-    props?.color ? props?.color : "#fff"};
+  color: ${(props) => (props?.color ? props?.color : "#fff")};
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 
-  ${(props) =>
-    props?.border ? props?.border : "1px solid #333"};
+  border: ${(props) => (props?.border ? props?.border : "1px solid #333")};
 
   &:hover {
     background-color: #fff;
