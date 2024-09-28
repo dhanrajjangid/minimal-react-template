@@ -12,7 +12,7 @@ import {
   CompanyPill,
 } from "./StyledComponents"; // Update styled components as well
 import FormModal from "./FormModal";
-import { ContainedButton } from "@/components/Common/FormInputs";
+import { ContainedButton, TextField } from "@/components/Common/FormInputs";
 import { useSelector } from "react-redux";
 import { useCandidate } from "../apiFunctions";
 import dayjs from "dayjs";
@@ -22,7 +22,13 @@ const Table = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const users = useSelector((state) => state.candidate.candidateList);
   const { getCandidateList } = useCandidate();
+  const [filteredList, setFilteredList] = useState([]);
 
+  useEffect(() => {
+    if (users?.length > 0) {
+      setFilteredList(users);
+    }
+  }, [users]);
   useEffect(() => {
     getCandidateList();
   }, []);
@@ -40,9 +46,22 @@ const Table = () => {
   const formattedDate = (date) => {
     return dayjs(date)?.locale("en")?.format("DD MMM, YYYY");
   };
+  const handleSearch = (e) => {
+    console.log(e.target.value, "value is consoeld here`")
+    if (e.target.value) {
+      const data = users.filter((item) =>
+        item?.name?.toLowerCase()?.includes(e?.target?.value?.toLowerCase())
+      );
+      setFilteredList(data);
+    } else {
+      setFilteredList(users);
+    }
+  };
   return (
     <>
-      {/* Desktop View */}
+      <div style={{ width: "100%", padding: "15px" }}>
+        <TextField placeholder="Search Candidate" onChange={handleSearch} widthtype="text" />
+      </div>
       <TableContainer>
         <TableElement>
           <Thead>
@@ -53,21 +72,21 @@ const Table = () => {
               <Th>Company</Th>
               <Th>Role</Th>
               <Th>Deposit</Th>
-              <Th>Remaining Amount</Th>
+              <Th>Total Amount</Th>
               <Th>Status</Th>
               <Th>Edit</Th>
             </tr>
           </Thead>
           <tbody>
-            {users?.map((user, index) => (
+            {filteredList?.map((user, index) => (
               <tr key={index}>
                 <Td>{index + 1}</Td>
                 <Td>{user.name}</Td>
-                <Td>{user.date}</Td>
+                <Td>{formattedDate(user?.date)}</Td>
                 <Td>{user.company}</Td>
                 <Td>{user.role}</Td>
                 <Td>₹{user.deposit}</Td>
-                <Td>₹{user.remainingAmount}</Td>
+                <Td>₹{user.totalAmount}</Td>
                 <Td>{user.status}</Td>
                 <Td>
                   <EditButton onClick={() => openModal(user)}>Edit</EditButton>
@@ -80,13 +99,13 @@ const Table = () => {
 
       {/* Mobile View */}
       <MobileView>
-        {users?.map((user, index) => (
+        {filteredList?.map((user, index) => (
           <MobileCard key={index}>
             <MobileCardContent>
               <strong style={{ fontSize: "18px" }}>{user.name}</strong>{" "}
               <CompanyPill
                 backgroundColor={
-                  user.company === "Revolut" ? "#4749BC" : "#BF3131"
+                  user.company === "Revolut" ? "#0E1112" : "#BF3131"
                 }
               >
                 {user.company}
@@ -109,8 +128,8 @@ const Table = () => {
             </MobileCardContent>
             <ContainedButton
               padding="10px 5px"
-              backgroundColor="#4749BC"
-              border="1px solid #4749BC"
+              backgroundColor="#BF3131"
+              border="1px solid #BF3131"
               onClick={() => openModal(user)}
             >
               Edit

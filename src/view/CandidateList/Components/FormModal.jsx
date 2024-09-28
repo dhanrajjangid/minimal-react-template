@@ -13,25 +13,37 @@ import {
   OutlinedButton,
   TextField,
 } from "@/components/Common/FormInputs";
+import { useCandidate } from "../apiFunctions";
 
 const FormModal = ({ user, closeModal }) => {
+  const { updateCandidate } = useCandidate();
   const [formData, setFormData] = useState({
     name: user.name,
+    id: user?._id,
     company: user.company,
     role: user.role,
     deposit: user.deposit,
-    addDeposit: "",
-    remainingAmount: user.remainingAmount,
+    addDeposit: 0,
+    totalAmount: user.totalAmount,
     status: user.status,
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    const updatedValue = name === "addDeposit" ? parseFloat(value) || 0 : value;
+
+    setFormData({ ...formData, [name]: updatedValue });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Logic to handle saving of the data
-    closeModal();
+    try {
+      await updateCandidate(formData);
+      closeModal();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -80,16 +92,17 @@ const FormModal = ({ user, closeModal }) => {
             <Label>Add More Deposit</Label>
             <TextField
               name="addDeposit"
-              value={formData.addDeposit}
+              type="number"
+              value={parseFloat(formData.addDeposit)}
               onChange={handleChange}
             />
           </FormField>
 
           <FormField>
-            <Label>Remaining Amount</Label>
+            <Label>Total Amount</Label>
             <TextField
               name="remainingAmount"
-              value={formData.remainingAmount}
+              value={formData.totalAmount}
               disabled
             />
           </FormField>
@@ -114,16 +127,16 @@ const FormModal = ({ user, closeModal }) => {
           <div style={{ display: "flex", gap: 5 }}>
             <OutlinedButton
               padding="15px 10px"
-              backgroundColor="#BD9BC7"
-              border="1px solid #BD9BC7"
+              border="1px solid #BF3131"
               onClick={closeModal}
             >
               Cancel
             </OutlinedButton>
             <ContainedButton
               padding="15px 10px"
-              backgroundColor="#BD9BC7"
-              border="1px solid #BD9BC7"
+              backgroundColor="#BF3131"
+              border="1px solid #BF3131"
+              type="button"
               onClick={handleSave}
             >
               Save

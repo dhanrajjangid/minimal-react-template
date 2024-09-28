@@ -4,11 +4,14 @@ import styled from "styled-components";
 // TextField component
 export const TextField = styled.input.attrs((props) => ({
   type: props.type === "number" ? "number" : "text",
+  placeholder: props.placeholder ?  props.placeholder : ""
 }))`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   max-width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
   font-size: 1rem;
 `;
 

@@ -1,4 +1,4 @@
-import { postApiData, getApiData } from "@/services/ApiService";
+import { postApiData, getApiData, putApiData } from "@/services/ApiService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { actions as candidateActions } from "@/redux/slices/candidateSlice";
@@ -32,5 +32,16 @@ export const useCandidate = () => {
     }
   };
 
-  return { createCandidateApi, getCandidateList };
+  const updateCandidate = async (data) => {
+    try {
+      const response = await putApiData(`/candidate/update/${data.id}`, data);
+      toast.success(response?.message ?? "Candidate updated successfully");
+      getCandidateList()
+      return response;
+    } catch (error) {
+      console.error("Failed to fetch team list", error);
+    }
+  };
+
+  return { createCandidateApi, getCandidateList, updateCandidate };
 };

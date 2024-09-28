@@ -133,8 +133,9 @@ export const MobileView = styled.div`
 `;
 
 export const MobileCard = styled.div`
-  background-color: #f5f5f5;
+  background-color: #FBFBFA;
   box-sizing: border-box;
+  border: 0.5px solid #EEEC;
   min-width: 350px;
   width: 100%;
   margin-bottom: 15px;
