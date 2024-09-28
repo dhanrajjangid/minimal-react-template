@@ -67,6 +67,7 @@ const FormModal = ({ user, closeModal }) => {
               value={formData.company}
               onChange={handleChange}
             >
+              <option value=""></option>
               <option value="Freshprints">Freshprints</option>
               <option value="Revolut">Revolut</option>
             </Select>
@@ -75,6 +76,8 @@ const FormModal = ({ user, closeModal }) => {
           <FormField>
             <Label>Role</Label>
             <Select name="role" value={formData.role} onChange={handleChange}>
+              <option value=""></option>
+
               <option value="Operations Manager">Operations Manager</option>
               <option value="Operations Associate">Operations Associate</option>
               <option value="Inside Sales Associate">
@@ -114,6 +117,8 @@ const FormModal = ({ user, closeModal }) => {
               value={formData.status}
               onChange={handleChange}
             >
+              <option value=""></option>
+
               <option value="Applied">Applied</option>
               <option value="Assessment Pending">Assessment Pending</option>
               <option value="Assessment Completed">Assessment Completed</option>
