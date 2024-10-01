@@ -8,11 +8,11 @@ import {
   Input,
   Button,
   Header,
-  Timestamp,
 } from "./Components/StyledComponents";
 import { getApiData, postApiData } from "@/services/ApiService";
 import UserList from "./Components/UserList";
 import dayjs from "dayjs";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 
 const Chat = () => {
   const [users, setUsers] = useState([]);
@@ -74,18 +74,21 @@ const Chat = () => {
       {currentChatUser ? (
         <ChatContainer>
           <Header>
-            <button
+            <div
               onClick={() => setCurrentChatUser(null)}
               style={{
-                background: "none",
-                border: "none",
-                color: "white",
                 cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              Back
-            </button>
-            <h2>{currentChatUser.name}</h2>
+              <MdOutlineArrowBackIos
+                size={24}
+                color="white"
+                style={{ marginRight: "8px" }}
+              />
+            </div>
+            <h2 style={{margin: 'auto'}}> {currentChatUser.name}</h2>
           </Header>
           <ChatMessages>
             {messages
@@ -117,12 +120,13 @@ const Chat = () => {
                 acc.push(
                   <>
                     <Message key={index} isSender={msg.sender === player_id}>
-                      <span style={{ wordBreak: 'break-all' }}>{msg.message}</span>
-                      <span style={{ fontSize: "10px"} }>
-                      {messageDate?.format("HH:mm")} {/* Formatted time */}
-                    </span>
+                      <span style={{ wordBreak: "break-all" }}>
+                        {msg.message}
+                      </span>
+                      <span style={{ fontSize: "10px" }}>
+                        {messageDate?.format("HH:mm")} {/* Formatted time */}
+                      </span>
                     </Message>
-                    
                   </>
                 );
 

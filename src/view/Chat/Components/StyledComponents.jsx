@@ -6,7 +6,7 @@ export const AppContainer = styled.div`
   box-sizing: border-box;
   height: 80vh; /* Adjusted for better responsiveness */
 
-  width: 400px; /* Full width */
+  width: 380px; /* Full width */
   margin: auto; /* Center horizontally */
   border-radius: 10px; /* Rounded corners */
   overflow: hidden; /* Prevent overflow of children */
@@ -15,6 +15,7 @@ export const AppContainer = styled.div`
 export const UserListContainer = styled.div`
   width: 400px; /* Wider user list */
   border-right: 1px solid #ccc;
+  box-sizing: border-box;
   padding: 10px;
   background-color: #f5f5f5;
   overflow-y: auto; /* Scrollable if too many users */
@@ -53,7 +54,7 @@ export const OnlineIndicator = styled.span`
   height: 8px;
   border-radius: 50%; /* Circular indicator */
   background-color: green; /* Green for online */
-  margin-left: 5px; /* Spacing */
+  
 `;
 
 export const ChatContainer = styled.div`
@@ -65,7 +66,6 @@ export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  border-left: 1px solid #ccc;
 `;
 
 export const ChatMessages = styled.div`
@@ -108,7 +108,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   padding: 10px;
   margin-left: 10px;
-  background-color: #007bff;
+  background-color: #BF3131;
   color: white;
   border: none;
   border-radius: 4px;
@@ -121,9 +121,10 @@ export const Button = styled.button`
 
 export const Header = styled.div`
   display: flex;
+  box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #BF3131;
   color: white;
 `;
