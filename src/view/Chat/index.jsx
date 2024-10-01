@@ -29,7 +29,7 @@ const Chat = () => {
     };
 
     fetchUsers();
-    const BASE_URL = "ws://my-squad-two.vercel.app/"; // Your API base URL
+    const BASE_URL = "wss://my-squad-two.vercel.app/"; // Your API base URL
 
     socketRef.current = new WebSocket(BASE_URL);
 
