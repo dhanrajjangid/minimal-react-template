@@ -89,6 +89,11 @@ const Sidebar = () => {
       path: "/create-user",
       icon: <AiOutlineUserAdd />,
     },
+    {
+      title: "Chat",
+      path: "/chat",
+      icon: <AiOutlineUserAdd />,
+    },
     
     // {
     //   title: "Courses",

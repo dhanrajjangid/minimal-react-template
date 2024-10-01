@@ -118,7 +118,6 @@ const FormModal = ({ user, closeModal }) => {
               onChange={handleChange}
             >
               <option value=""></option>
-
               <option value="Applied">Applied</option>
               <option value="Assessment Pending">Assessment Pending</option>
               <option value="Assessment Completed">Assessment Completed</option>
@@ -126,6 +125,9 @@ const FormModal = ({ user, closeModal }) => {
               <option value="Interview Completed">Interview Completed</option>
               <option value="Offer Letter Received">
                 Offer Letter Received
+              </option>
+              <option value="Rejected">
+                Rejected
               </option>
             </Select>
           </FormField>

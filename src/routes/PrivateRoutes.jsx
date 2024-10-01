@@ -20,6 +20,7 @@ import TeamDetails from "@/view/TeamListing/Components/TeamDetails";
 import ScheduleCalender from "@/view/ScheduleCalender";
 import UserProfile from "@/view/UserProfile";
 import EventDetails from "@/view/EventDetails";
+import Chat from "@/view/Chat";
 
 const PrivateLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -130,6 +131,10 @@ const privateRoutes = [
       {
         path: "/event-details",
         element: <EventDetails />,
+      },
+      {
+        path: '/chat',
+        element: <Chat />
       }
     ],
   },
